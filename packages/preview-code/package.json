@@ -1,0 +1,30 @@
+{
+  "name": "md-code-preview",
+  "version": "1.0.0",
+  "description": "",
+  "author": "SunLxy <1011771396@qq.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "src",
+    "esm"
+  ],
+  "scripts": {
+    "build": "tsbb build",
+    "watch": "tsbb watch"
+  },
+  "peerDependencies": {
+    "react": ">=17.x",
+    "react-dom": ">=17.x"
+  },
+  "dependencies": {
+    "@uiw/react-stackblitz": "~1.0.5",
+    "@uiw/react-codesandbox": "~1.1.5",
+    "@uiw/react-codepen": "~1.0.2",
+    "@uiw/copy-to-clipboard": "^1.0.12"
+  }
+}

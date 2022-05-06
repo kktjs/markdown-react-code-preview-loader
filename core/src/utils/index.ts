@@ -25,7 +25,11 @@ export const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[]
       if (/export default/.test(item.value)) {
         const result = transformCode(item.value, `BaseCode${line}`);
         if (result.isDefault) {
-          codeBlock[line] = result;
+          codeBlock[line] = {
+            ...result,
+            language: item.lang,
+            value: item.value,
+          };
         }
       }
     }
@@ -115,16 +119,20 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
   const depNamespacesArr: DepNamespacesType[] = [];
   let baseCodeStr = ``;
   let baseCodeObjStr = ``;
+  let codeBlockValue = ``;
+  let languageStr = ``;
   Object.entries(codeBlock).forEach(([key, item]) => {
-    const { code, depNamespaces, deps, depDirects } = item;
+    const { code, depNamespaces, deps, depDirects, value, language } = item;
     baseCodeStr += `${code};\n`;
     baseCodeObjStr += `${key}:BaseCode${key},\n`;
+    codeBlockValue += `${key}:\`${value}\`,\n`;
+    languageStr += `${key}:\`${language}\`,\n`;
     depsArr.push(deps);
     depNamespacesArr.push(depNamespaces);
     depDirectsArr.push(depDirects);
   });
   const depsStr = createDepsStr(depsArr, depNamespacesArr, depDirectsArr);
-  let indexStr = `${depsStr} ${baseCodeStr} const BaseCodeData={${baseCodeObjStr}}`;
+  let indexStr = `${depsStr} ${baseCodeStr} const languageData={${languageStr}};\n const codeBlockValue={${codeBlockValue}};\n const BaseCodeData={${baseCodeObjStr}}`;
   return indexStr;
 };
 

@@ -14,10 +14,11 @@
   "license": "MIT",
   "dependencies": {
     "@uiw/react-github-corners": "~1.5.3",
-    "@uiw/react-markdown-preview": "~3.5.1",
+    "@uiw/react-markdown-preview": "~4.0.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "uiw": "^4.21.7"
+    "uiw": "^4.21.7",
+    "md-code-preview": "1.0.0"
   },
   "devDependencies": {
     "md-loader": "1.0.0",

@@ -4,6 +4,8 @@
     "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
     "build": "lerna exec --scope md-loader -- npm run build",
     "watch": "lerna exec --scope md-loader -- npm run watch",
+    "build:code": "lerna exec --scope md-code-preview -- npm run build",
+    "watch:code": "lerna exec --scope md-code-preview -- npm run watch",
     "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
     "start": "lerna exec --scope website -- npm run start",
     "doc": "lerna exec --scope website -- npm run build",

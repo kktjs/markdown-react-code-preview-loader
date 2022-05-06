@@ -44,4 +44,8 @@ export type CodeBlockItemType = {
   depNamespaces?: DepNamespacesType;
   /** 其他直接导入的依赖  ，例如：`import "./a.css"` **/
   depDirects?: DepNamespacesType;
+  /** 原始代码块 **/
+  value?: string;
+  /** 语言 **/
+  language?: string;
 };
