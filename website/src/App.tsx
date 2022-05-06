@@ -19,7 +19,7 @@ export default function App() {
   const [mdData, setMdData] = React.useState({ source: '', BaseCodeData: {}, codeBlockValue: {} });
   React.useEffect(() => {
     const getMd = async () => {
-      const result = await import(`./App${lang}.md`);
+      const result = await import(`@uiw/react-layout/README${lang}.md`);
       if (result.default) {
         setMdData(result.default);
       }
