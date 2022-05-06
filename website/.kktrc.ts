@@ -19,10 +19,9 @@ export default (conf: Configuration, env: 'development' | 'production', options:
       VERSION: JSON.stringify(pkg.version),
     }),
   );
-  conf.output = {
-    ...(conf.output || {}),
-    publicPath: './',
-  };
   conf = mdCodeModulesLoader(conf);
+  if (process.env.NODE_ENV === 'production') {
+    conf.output = { ...conf.output, publicPath: './' };
+  }
   return conf;
 };
