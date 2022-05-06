@@ -1,53 +1,22 @@
 {
-  "name": "@uiw/react-monorepo-template",
-  "version": "1.0.1",
-  "description": "React Monorepo Template.",
-  "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://uiwjs.github.io/react-monorepo-template",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uiwjs/react-monorepo-template.git"
-  },
+  "name": "md-loader",
+  "version": "1.0.0",
+  "description": "解析 markdown 预览代码块",
+  "author": "SunLxy <1011771396@qq.com>",
   "license": "MIT",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
+  "main": "./lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist.css",
-    "dist",
-    "cjs",
-    "esm",
-    "src"
+    "lib",
+    "src",
+    "esm"
   ],
-  "publishConfig": {
-    "access": "public"
+  "scripts": {
+    "build": "tsbb build",
+    "watch": "tsbb watch"
   },
-  "keywords": [
-    "react-monorepo-template",
-    "react.js",
-    "react",
-    "template",
-    "monorepo",
-    "monorepo-template",
-    "uiw",
-    "uiw-react",
-    "react-component",
-    "component",
-    "components",
-    "ui",
-    "css",
-    "uikit",
-    "react-ui",
-    "framework"
-  ],
-  "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
-  },
-  "devDependencies": {
-    "@babel/runtime": "~7.17.2",
-    "@types/react": "~17.0.39",
-    "@types/react-dom": "~17.0.13",
-    "react": "~17.0.2",
-    "react-dom": "~17.0.2"
+  "dependencies": {
+    "remark": "~13.0.0"
   }
 }

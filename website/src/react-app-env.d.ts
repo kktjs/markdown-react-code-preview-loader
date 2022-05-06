@@ -6,6 +6,6 @@ declare module '*.module.less' {
 }
 
 declare module '*.md' {
-  const src: string;
+  const src: any;
   export default src;
 }

@@ -1,9 +1,19 @@
 {
-  "extends": "../tsconfig",
-  "include": ["src"],
   "compilerOptions": {
-    "outDir": "./cjs",
-    "baseUrl": ".",
-    "noEmit": false
-  }
+    "module": "esnext",
+    "target": "esnext",
+    "esModuleInterop": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "outDir": "lib",
+    "baseUrl": "."
+  },
+  "include": ["src"]
 }
