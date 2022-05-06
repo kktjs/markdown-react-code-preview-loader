@@ -23,7 +23,7 @@ export const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[]
     if (item && item.type === 'code' && lang.includes(item.lang)) {
       const line = item.position.start.line;
       if (/export default/.test(item.value)) {
-        const result = transformCode(item.value, `BaseCode${line}`);
+        const result = transformCode(item.value, item.lang, `BaseCode${line}`);
         if (result.isDefault) {
           codeBlock[line] = {
             ...result,
@@ -37,102 +37,19 @@ export const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[]
   return codeBlock;
 };
 
-export const createDepsStr = (
-  deps: DepsType[],
-  depNamespaces: DepNamespacesType[],
-  depDirects: DepNamespacesType[],
-) => {
-  let defaultStr = ``;
-  let asStr = ``;
-  let otherStr = ``;
-  let directStr = ``;
-  // 为了记录是否已经创建过了
-  const defaultMap = new Map<string, string>([]);
-  const asMap = new Map<string, string>([]);
-  const otherMap = new Map<string, string[]>([]);
-  const directMap = new Map<string, string>([]);
-
-  /**
-   * 1. 先创建 default 的字符串
-   * 2. 再创建 as 方式的字符串
-   * 3. 再创建 other 的字符串
-   * **/
-  deps.forEach((rowItem) => {
-    Object.entries(rowItem).forEach(([key, itemValue]) => {
-      const { default: defaultValue, other } = itemValue;
-      if (defaultValue && !defaultMap.has(key)) {
-        defaultMap.set(key, defaultValue);
-        defaultStr += `import ${defaultValue} from "${key}";\n`;
-      }
-      if (other && Array.isArray(other)) {
-        const oldOtherArr = otherMap.get(key) || [];
-        let childStr = ``;
-        other.forEach((str) => {
-          const findx = oldOtherArr.findIndex((it) => it === str);
-          if (findx === -1) {
-            childStr += `${str},`;
-            oldOtherArr.push(str);
-          }
-        });
-        if (childStr) {
-          otherStr += `import { ${childStr} } from "${key}";\n`;
-        }
-        otherMap.set(key, oldOtherArr);
-      }
-    });
-  });
-
-  depDirects.forEach((rowItem) => {
-    Object.entries(rowItem).forEach(([key, value]) => {
-      if (!directMap.has(key)) {
-        directStr += `import "${key}";\n`;
-        directMap.set(key, value);
-      }
-    });
-  });
-
-  depNamespaces.forEach((rowItem) => {
-    Object.entries(rowItem).forEach(([key, value]) => {
-      if (!asMap.has(key)) {
-        asStr += `import ${value} from "${key}";\n`;
-        asMap.set(key, value);
-      }
-    });
-  });
-
-  // 判断是否存在 React 依赖
-  if (!defaultMap.has('react')) {
-    defaultStr += `import React from "react";\n`;
-  }
-
-  return `
-  ${defaultStr}  
-  ${asStr}  
-  ${otherStr}
-  ${directStr}
-  `;
-};
-
 const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
-  const depsArr: DepsType[] = [];
-  const depDirectsArr: DepNamespacesType[] = [];
-  const depNamespacesArr: DepNamespacesType[] = [];
   let baseCodeStr = ``;
   let baseCodeObjStr = ``;
   let codeBlockValue = ``;
   let languageStr = ``;
   Object.entries(codeBlock).forEach(([key, item]) => {
-    const { code, depNamespaces, deps, depDirects, value, language } = item;
+    const { code, value, language } = item;
     baseCodeStr += `${code};\n`;
     baseCodeObjStr += `${key}:BaseCode${key},\n`;
     codeBlockValue += `${key}:\`${value}\`,\n`;
     languageStr += `${key}:\`${language}\`,\n`;
-    depsArr.push(deps);
-    depNamespacesArr.push(depNamespaces);
-    depDirectsArr.push(depDirects);
   });
-  const depsStr = createDepsStr(depsArr, depNamespacesArr, depDirectsArr);
-  let indexStr = `${depsStr} ${baseCodeStr} const languageData={${languageStr}};\n const codeBlockValue={${codeBlockValue}};\n const BaseCodeData={${baseCodeObjStr}}`;
+  let indexStr = `${baseCodeStr} const languageData={${languageStr}};\n const codeBlockValue={${codeBlockValue}};\n const BaseCodeData={${baseCodeObjStr}}`;
   return indexStr;
 };
 

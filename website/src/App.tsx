@@ -67,16 +67,14 @@ export default function App() {
               return <code {...props} />;
             }
             const line = node.position?.start.line;
-            if (typeof line === 'number') {
-              // @ts-ignore
-              const child = mdData.BaseCodeData[line];
+            // @ts-ignore
+            const Child = mdData.BaseCodeData[line];
+            if (typeof line === 'number' && typeof Child === 'function') {
               // @ts-ignore
               const copyNodes = mdData.codeBlockValue[line] || '';
-
-              console.log(node);
               return (
                 <PreView code={<code {...rest} />} copyNodes={copyNodes}>
-                  <React.Suspense fallback="loading...">{child()}</React.Suspense>
+                  <Child />
                 </PreView>
               );
             }

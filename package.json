@@ -2,8 +2,9 @@
   "private": true,
   "scripts": {
     "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
-    "build": "lerna exec --scope md-loader -- npm run build",
-    "watch": "lerna exec --scope md-loader -- npm run watch",
+    "build": "npm run build:loader && npm run build:code",
+    "build:loader": "lerna exec --scope md-loader -- npm run build",
+    "watch:loader": "lerna exec --scope md-loader -- npm run watch",
     "build:code": "lerna exec --scope md-code-preview -- npm run build",
     "watch:code": "lerna exec --scope md-code-preview -- npm run watch",
     "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
