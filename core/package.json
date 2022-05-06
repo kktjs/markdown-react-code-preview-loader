@@ -17,6 +17,10 @@
     "watch": "tsbb watch"
   },
   "dependencies": {
+    "@babel/parser": "^7.17.10",
+    "@babel/traverse": "^7.17.10",
+    "@babel/types": "^7.17.10",
+    "@babel/generator": "^7.17.10",
     "remark": "~13.0.0"
   }
 }
