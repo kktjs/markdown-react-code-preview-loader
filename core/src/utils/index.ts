@@ -1,7 +1,7 @@
 /*
  * @Description: markdown 转化
  */
-import { MarkDownTreeType, CodeBlockItemType, DepsType, DepNamespacesType } from './interface';
+import { MarkDownTreeType, CodeBlockItemType } from './interface';
 import { transformCode } from './transform';
 import webpack from 'webpack';
 export * from './interface';
