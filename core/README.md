@@ -1,6 +1,10 @@
 markdown-react-code-preview-loader
 ===
 
+[![CI](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml/badge.svg)](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/markdown-react-code-preview-loader.svg)](https://www.npmjs.com/package/markdown-react-code-preview-loader)
+[![npm unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/markdown-react-code-preview-loader/file/README.md)
+
 Index example text in Markdown, converted to React components. The current package is the `loader` of `webpack`, which loads the `markdown` document by configuring the current `loader`, returning a `JS` object containing the `markdown` text, the example index in the `markdown` text.
 
 ## Install Loader

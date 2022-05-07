@@ -1,6 +1,10 @@
 markdown-react-code-preview-loader
 ===
 
+[![CI](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml/badge.svg)](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/markdown-react-code-preview-loader.svg)](https://www.npmjs.com/package/markdown-react-code-preview-loader)
+[![npm unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/markdown-react-code-preview-loader/file/README.md)
+
 索引 Markdown 中的示例文本，转换为 React 组件。当前包是 `webpack` 的 `loader`，通过配置当前 `loader` 加载 `markdown` 文档，返回一个 `JS` 对象，包含 `markdown` 文本，`markdown` 文本中的示例索引。
 
 ## 安装 Loader
