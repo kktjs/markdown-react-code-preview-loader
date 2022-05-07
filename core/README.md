@@ -31,3 +31,62 @@ export type MdLoaderReturn = {
 ## mdCodeModulesLoader
 
 在`webpack`配置中添加`md-loader`的`loader`配置
+
+## kkt中用法
+
+在[kkt](https://github.com/kktjs/kkt)中使用方式
+
+**第一种使用mdCodeModulesLoader方法**
+
+```ts
+// .kktrc.ts
+
+import webpack, { Configuration } from 'webpack';
+import scopePluginOptions from '@kkt/scope-plugin-options';
+import { LoaderConfOptions } from 'kkt';
+import { mdCodeModulesLoader } from 'md-loader';
+
+export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+  // ....
+  conf = mdCodeModulesLoader(conf);
+  // ....
+  return conf;
+};
+
+```
+
+**第二种直接自己添加**
+
+```ts
+// .kktrc.ts
+
+import webpack, { Configuration } from 'webpack';
+import scopePluginOptions from '@kkt/scope-plugin-options';
+import { LoaderConfOptions } from 'kkt';
+
+export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+  // ....
+  config.module.rules.forEach((ruleItem) => {
+    if (typeof ruleItem === 'object') {
+      if (ruleItem.oneOf) {
+        ruleItem.oneOf.unshift({
+          test: /.md$/,
+          use: [
+            {
+              loader: 'md-loader',
+              options: { lang:["jsx","tsx"] },
+            },
+          ],
+        });
+      }
+    }
+  });
+  // ....
+  return conf;
+};
+
+```
+
+## options参数
+
+> lang: 需要解析代码块的语言,默认:`["jsx","tsx"]`
