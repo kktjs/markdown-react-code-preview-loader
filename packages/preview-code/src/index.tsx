@@ -17,7 +17,7 @@ const Preview = (props: PreviewProps) => {
     ...rest
   } = props;
   return (
-    <div className={`preview-fieldset preview-fieldset-warp ${className}`}>
+    <div className={`preview-fieldset ${className}`}>
       <div {...rest} className={`preview-body ${previewBodyClassName}`} />
       <Code
         language={language}
