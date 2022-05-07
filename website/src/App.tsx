@@ -65,13 +65,6 @@ export default function App() {
         style={{ padding: '15px 15px' }}
         source={mdData.source}
         components={{
-          /**
-           * bgWhite 设置代码预览背景白色，否则为格子背景。
-           * noCode 不显示代码编辑器。
-           * noPreview 不显示代码预览效果。
-           * noScroll 预览区域不显示滚动条。
-           * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
-           */
           code: ({ inline, node, ...props }) => {
             const {
               'data-meta': meta,
@@ -84,21 +77,9 @@ export default function App() {
               codeSandbox,
               ...rest
             } = props as any;
-
             if (inline) {
               return <code {...props} />;
             }
-            // const config = {
-            //   noPreview,
-            //   noScroll,
-            //   bgWhite,
-            //   noCode,
-            //   codePen,
-            //   codeSandboxOption,
-            // } as any;
-            // if (Object.keys(config).filter((name) => config[name] !== undefined).length === 0) {
-            //   return <code {...props} />;
-            // }
             const line = node.position?.start.line;
             const funName = getMetaData(meta || '') || line;
             const Child = mdData.BaseCodeData[funName || ''];
