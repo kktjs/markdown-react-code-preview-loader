@@ -86,10 +86,10 @@ mdObj.codeBlock    // => The component source code index object, the sample sour
   codeBlock: {
     17: 'import React from ...',
     77: 'import React from ...',
-    base23: 'import React from ...'
+    demo12: 'import React from ...'
   },
-  components: { 17: ƒ, 77: ƒ, base23: ƒ },
-  languages: { 17: 'jsx', 77: 'jsx', base23: 'jsx'},
+  components: { 17: ƒ, 77: ƒ, demo12: ƒ },
+  languages: { 17: 'jsx', 77: 'jsx', demo12: 'jsx'},
   source: "# Alert 确认对话框...."
 }
 ```
@@ -115,25 +115,26 @@ Note: You need to add a special `meta` identifier to the code block example, and
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
 3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
 
-```markdown
-\```tsx mdx:preview
-import React from "react"
-const Demo = ()=>{
-  return <div>测试</div>
-}
 
-export default Demo
-\```  
+    ```tsx mdx:preview
+    import React from "react"
+    const Demo = ()=>{
+      return <div>测试</div>
+    }
 
-\```tsx mdx:preview:demo12
-import React from "react"
-const Demo = ()=>{
-  return <div>测试</div>
-}
+    export default Demo
+    ```  
 
-export default Demo
-\```
-```
+
+    ```tsx mdx:preview:demo12
+    import React from "react"
+    const Demo = ()=>{
+      return <div>测试</div>
+    }
+
+    export default Demo
+    ```
+
 
 ## Development
 
