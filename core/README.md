@@ -93,8 +93,8 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ## markdown 设置 mate 值
 
-> preview: 控制是否进行进行预览的
-> preview:demo12:`demo12`是设置一个保存方法的名称，根据这个设置的值获取渲染数据,默认这个值是所属code代码块开始行值
+> 1. preview: 控制是否进行进行预览的
+> 2. preview:demo12:`demo12`是设置一个保存方法的名称，根据这个设置的值获取渲染数据,默认这个值是所属code代码块开始行值
 
 ```markdown
 
