@@ -19,6 +19,19 @@ mdObj.components   // => 组件索引对象，从 markdown 索引到的示例转
 mdObj.codeBlock    // => 组件源码索引对象，从 markdown 索引到的示例源码。(需要配置 meta)
 ```
 
+```js
+{
+  codeBlock: {
+    17: 'import React from ...',
+    77: 'import React from ...',
+    base23: 'import React from ...'
+  },
+  components: { 17: ƒ, 77: ƒ, base23: ƒ },
+  languages: { 17: 'jsx', 77: 'jsx', base23: 'jsx'},
+  source: "# Alert 确认对话框...."
+}
+```
+
 ```ts
 export type CodeBlockData = {
   source: string;

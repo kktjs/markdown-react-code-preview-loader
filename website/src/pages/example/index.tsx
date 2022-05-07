@@ -23,11 +23,12 @@ export function ExamplePage() {
     languages: {},
   });
 
-  const [lang, setLang] = useState('');
+  const [lang] = useState('');
   useEffect(() => {
     const getMd = async () => {
       // const result = await import(`@uiw/react-layout/README${lang}.md`);
       const result = await import(`./App${lang}.md`);
+      console.log(result);
       if (result.default) {
         setMdData(result.default);
       }
