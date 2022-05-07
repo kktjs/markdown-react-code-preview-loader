@@ -1,7 +1,7 @@
 {
   "name": "code-layout",
   "version": "1.0.0",
-  "description": "",
+  "description": "简化代码块预览布局和第三方预览工具控制",
   "author": "SunLxy <1011771396@qq.com>",
   "homepage": "",
   "license": "MIT",

@@ -4,7 +4,7 @@
  npm i code-layout
 ```
 
-简化代码块布局和第三方预览工具控制
+简化代码块预览布局和第三方预览工具控制
 
 ## 类型参数
 
@@ -46,7 +46,7 @@ export default () => {
   return (
     <Preview
       copyNodes={`export default ()=>{return <div>3333</div>}`}
-      code={<div>展开隐藏部分的代码展示</div>}
+      code={<div>展开/隐藏部分的代码展示</div>}
     >
       预览效果
     </Preview>

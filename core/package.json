@@ -1,7 +1,7 @@
 {
   "name": "md-loader",
   "version": "1.0.0",
-  "description": "解析 markdown 预览代码块",
+  "description": "解析 markdown 预览代码块，转换成可预览的内容",
   "author": "SunLxy <1011771396@qq.com>",
   "license": "MIT",
   "main": "./lib/index.js",
