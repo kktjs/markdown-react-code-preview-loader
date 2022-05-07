@@ -13,7 +13,7 @@ md-loader
 
 ## getCodeBlockString 
 
-传递`markdown`文件内容字符串,返回转换好的需要预览的代码块
+传递`markdown`文件内容字符串,返回转换好的需要预览的代码块解析数据
 
 ## mdCodeModulesLoader
 
