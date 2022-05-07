@@ -11,6 +11,15 @@ md-loader
 > 4. languageData: 行对应的代码块语言
 >
 
+```ts
+export type MdLoaderReturn = {
+  source: string;
+  BaseCodeData: Record<string | number, React.FC>
+  codeBlockValue: Record<string | number, string>
+  languageData: Record<string | number, string>
+}
+```
+
 ## getCodeBlockString 
 
 传递`markdown`文件内容字符串,返回转换好的需要预览的代码块解析数据

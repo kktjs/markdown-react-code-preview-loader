@@ -14,9 +14,21 @@ const language = {
   },
 };
 
+export type MdDataType = {
+  source: string;
+  BaseCodeData: Record<string | number, React.FC>;
+  codeBlockValue: Record<string | number, string>;
+  languageData: Record<string | number, string>;
+};
+
 export default function App() {
   const [lang, setLang] = React.useState('');
-  const [mdData, setMdData] = React.useState({ source: '', BaseCodeData: {}, codeBlockValue: {} });
+  const [mdData, setMdData] = React.useState<MdDataType>({
+    source: '',
+    BaseCodeData: {},
+    codeBlockValue: {},
+    languageData: {},
+  });
   React.useEffect(() => {
     const getMd = async () => {
       const result = await import(`@uiw/react-layout/README${lang}.md`);
@@ -67,10 +79,8 @@ export default function App() {
               return <code {...props} />;
             }
             const line = node.position?.start.line;
-            // @ts-ignore
-            const Child = mdData.BaseCodeData[line];
+            const Child = mdData.BaseCodeData[line || ''];
             if (typeof line === 'number' && typeof Child === 'function') {
-              // @ts-ignore
               const copyNodes = mdData.codeBlockValue[line] || '';
               return (
                 <PreView code={<code {...rest} />} copyNodes={copyNodes}>
