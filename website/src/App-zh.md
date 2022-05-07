@@ -144,7 +144,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 
-```jsx
+```jsx | preview
 import React from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
@@ -258,7 +258,7 @@ import Alert from "@uiw/react-alert";
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 
-```jsx
+```jsx | preview
 import React from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
@@ -373,7 +373,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 
-```jsx
+```jsx | preview
 import React from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
@@ -429,7 +429,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 
-```jsx
+```jsx | preview
 import React from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
