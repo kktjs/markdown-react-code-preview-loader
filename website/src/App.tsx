@@ -16,7 +16,7 @@ const language = {
 
 const getMetaData = (meta: string) => {
   if (meta) {
-    const [metaItem] = /dj:(.[\w|:]+)/i.exec(meta) || [];
+    const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
     if (val) {

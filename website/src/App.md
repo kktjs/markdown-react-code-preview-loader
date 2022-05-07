@@ -2,7 +2,7 @@
 ## Basic 
 
 
-```jsx dj:preview:base12
+```jsx mdx:preview:base12
 import React from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
