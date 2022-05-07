@@ -144,6 +144,17 @@ npm run hoist # Install sub packages dependencies
 npm run watch:loader
 npm run start
 ```
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/kktjs/markdown-react-code-preview-loader/graphs/contributors">
+  <img src="https://kktjs.github.io/markdown-react-code-preview-loader/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+
 ### License
 
 Licensed under the MIT License.

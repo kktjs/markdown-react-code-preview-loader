@@ -135,7 +135,7 @@ export default Demo
 \```
 ```
 
-## Development
+## 开发
 
 ```bash
 npm install   # Install dependencies
@@ -144,6 +144,17 @@ npm run hoist # Install sub packages dependencies
 npm run watch:loader
 npm run start
 ```
+
+## 贡献者
+
+一如既往，感谢我们出色的贡献者！
+
+<a href="https://github.com/kktjs/markdown-react-code-preview-loader/graphs/contributors">
+  <img src="https://kktjs.github.io/markdown-react-code-preview-loader/CONTRIBUTORS.svg" />
+</a>
+
+由 [action-contributors](https://github.com/jaywcjlove/github-action-contributors) 生成。
+
 ### License
 
 Licensed under the MIT License.
