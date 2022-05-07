@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'uiw';
-import PreView from 'md-code-preview';
+import PreView from 'code-layout';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
 const language = {
