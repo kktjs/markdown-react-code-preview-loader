@@ -1,6 +1,6 @@
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import mdStr from 'markdown-react-code-preview-loader/README.md';
-
+import useMdData from './../../components/useMdData';
 export function HomePage() {
-  return <MarkdownPreview source={mdStr.source} />;
+  const mdData = useMdData((lang) => import(`markdown-react-code-preview-loader/README${lang}.md`));
+  return <MarkdownPreview source={mdData.source} />;
 }

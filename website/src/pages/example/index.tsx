@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import PreView from '../../components/CodeLayout';
-
+import useMdData from './../../components/useMdData';
 const getMetaData = (meta: string) => {
   if (meta) {
     const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
@@ -16,25 +14,7 @@ const getMetaData = (meta: string) => {
 };
 
 export function ExamplePage() {
-  const [mdData, setMdData] = useState<CodeBlockData>({
-    source: '',
-    components: {},
-    codeBlock: {},
-    languages: {},
-  });
-
-  const [lang] = useState('');
-  useEffect(() => {
-    const getMd = async () => {
-      // const result = await import(`@uiw/react-layout/README${lang}.md`);
-      const result = await import(`./App${lang}.md`);
-      console.log(result);
-      if (result.default) {
-        setMdData(result.default);
-      }
-    };
-    getMd();
-  }, [lang]);
+  const mdData = useMdData((lang) => import(`./App${lang}.md`));
   return (
     <div>
       <MarkdownPreview

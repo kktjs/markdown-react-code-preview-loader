@@ -22,6 +22,8 @@
     "@uiw/react-codepen": "~1.0.2",
     "@uiw/copy-to-clipboard": "^1.0.12",
     "@wcj/dark-mode": "^1.0.14",
+    "react-i18next": "~11.16.9",
+    "i18next": "~21.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-router-dom": "^6.3.0",

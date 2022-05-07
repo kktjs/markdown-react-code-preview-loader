@@ -3,7 +3,7 @@ import { Outlet, NavLink } from 'react-router-dom';
 import GitHubCorners from '@uiw/react-github-corners';
 import '@wcj/dark-mode';
 import styles from './Layout.module.less';
-
+import Language from './language/Select';
 export function Layout() {
   return (
     <Fragment>
@@ -17,6 +17,7 @@ export function Layout() {
             Example
           </NavLink>
           <dark-mode permanent></dark-mode>
+          <Language />
         </nav>
       </header>
       <div className={styles.warpper}>

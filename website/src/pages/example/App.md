@@ -1,10 +1,10 @@
-# Alert 确认对话框
+# Alert Confirmation dialog box
 
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-alert/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-alert.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-alert)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-alert.svg?label=@uiw/react-alert)](https://npmjs.com/@uiw/react-alert)
 
-弹出对话框会在继续之前，通知用户重要信息，点击确定后异步关闭对话框。
+The pop-up dialog box will notify the user of important information before continuing, and click OK to close the dialog box asynchronously.
 
 ```js
 import { Alert } from "uiw";
@@ -12,7 +12,7 @@ import { Alert } from "uiw";
 import Alert from "@uiw/react-alert";
 ```
 
-## 基本用法
+## Basic Usage
 
 ```jsx mdx:preview
 import React from "react";
@@ -70,9 +70,9 @@ class Demo extends React.Component {
 export default Demo;
 ```
 
-## 延迟关闭对话框
+## Delay closing dialog
 
-这里是利用 `Promise` 等它执行完成再去关闭窗口
+Here is to use `Promise` to close the window after its execution is completed
 
 ```jsx mdx:preview
 import React from "react";
@@ -134,9 +134,9 @@ class Demo extends React.Component {
 export default Demo;
 ```
 
-## 带图标的弹出框
+## Pop up box with Icon
 
-通过设置 `icon` 和 `type` 参数设置带状态的弹出对话框。
+Set the pop-up dialog box with status by setting the `icon` and `type` parameters.
 
 ```jsx mdx:preview
 import React from "react";
@@ -242,13 +242,7 @@ class Demo extends React.Component {
 export default Demo;
 ```
 
-```js
-import { Alert } from "uiw";
-// or
-import Alert from "@uiw/react-alert";
-```
-
-## 带标题的弹出框
+## Pop up box with title
 
 ```jsx mdx:preview
 import React from "react";
@@ -359,9 +353,9 @@ class Demo extends React.Component {
 export default Demo;
 ```
 
-### 自定义按钮
+### Custom button
 
-这个对话框有两个按钮，单击 **`确定按钮`** 或 **`取消按钮`** 后，此对话框将关闭，将不触发 ~~`onConfirm`~~ 或 ~~`onCancel`~~ 事件。因为这俩按钮是自定义按钮。你可以正对自定义按钮外面的对象定义 `className="w-alert-footer"` 将显示默认样式。
+There are two buttons in this dialog box. After clicking **OK button** or **cancel button**, this dialog box will close and the ~~`onconfirm`~~ or ~~`OnCancel`~~ event will not be triggered. Because these two buttons are custom buttons. You can define `classname = "w-alert-footer"` for the object outside the custom button, and the default style will be displayed.
 
 ```jsx mdx:preview:base23
 import React from "react";
@@ -415,7 +409,7 @@ class Demo extends React.Component {
 export default Demo;
 ```
 
-### 不显示遮罩层
+### Mask layers are not displayed
 
 ```jsx mdx:preview
 import React from "react";
@@ -463,19 +457,18 @@ export default Demo;
 
 ## Props
 
-虽然类似于对 `<Modal>`，但 `<Alert>` 更具限制性，只应用于重要信息。此组件继承 [`<Modal>`](#/components/modal) 的属性，所以部分参数可以参考 `<Modal>` 组件。
+Although similar to `<Modal>`, `<Alert>` is more restrictive and applies only to important information. This component inherits the properties of [`<Modal>`](#/components/modal), so some parameters can refer to the `<Modal>` component.
+| parameter       | explain       | type             | Default value  |
+| ------------------------------------------- | ----- | ---------------- | ------- |
+| onCancel                                    | Callback function of cancel button | Function(e)      | -       |
+| onConfirm                                   | Click OK to call back | Function(e)      | -       |
+| cancelText                                  | Cancel button text,    | String           | -       |
+| confirmText                                 | Confirm button text      | String           | `确认`  |
+| type                                        | The button type is consistent with the `type` parameter of the `<Button>` component and will affect the button color.| String           | `light` |
+| icon[`<Modal>`](#/components/modal)         | Set the icon in the upper right corner of the dialog box. Set `type` to set the icon to a different color. The current attribute is the `type` attribute of [`<Icon>`](#/components/icon) component, so you can refer to the custom icon of the component. | String/ReactNode | -       |
+| title[`<Modal>`](#/components/modal)        | Set title                                                 | Function(e)      | -       |
+| useButton[`<Modal>`](#/components/modal)    | Whether to use the default button. If you set `false`, you need to customize the button to close    | Boolean          | `true`  |
+| isOpen[`<Modal>`](#/components/modal)       | Whether the dialog box is visible      | Boolean          | `false` |
+| maskClosable[`<Modal>`](#/components/modal) | Click whether the mask layer is allowed to be turned off  | boolean          | `true`  |
 
-| 参数                                        | 说明                                                                                                                                                  | 类型             | 默认值  |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------- |
-| onCancel                                    | 取消按钮的回调函数                                                                                                                                    | Function(e)      | -       |
-| onConfirm                                   | 点击确定按钮回调                                                                                                                                      | Function(e)      | -       |
-| cancelText                                  | 取消按钮文字，                                                                                                                                        | String           | -       |
-| confirmText                                 | 确认按钮文字                                                                                                                                          | String           | `确认`  |
-| type                                        | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。                                                                                    | String           | `light` |
-| icon[`<Modal>`](#/components/modal)         | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | -       |
-| title[`<Modal>`](#/components/modal)        | 设置标题                                                                                                                                              | Function(e)      | -       |
-| useButton[`<Modal>`](#/components/modal)    | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭                                                                                                 | Boolean          | `true`  |
-| isOpen[`<Modal>`](#/components/modal)       | 对话框是否可见                                                                                                                                        | Boolean          | `false` |
-| maskClosable[`<Modal>`](#/components/modal) | 点击遮罩层是否允许关闭                                                                                                                                | boolean          | `true`  |
-
-更多属性文档请参考 [Modal](#/components/modal)。
+For more attribute documents, please refer to [Modal](#/components/modal)。
