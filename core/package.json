@@ -2,8 +2,12 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "markdown-react-code-preview-loader",
   "version": "1.0.0",
-  "description": "解析 markdown 预览代码块，转换成可预览的内容",
+  "description": "Index react example text in markdown, converted to React components.",
   "author": "SunLxy <1011771396@qq.com>",
+  "contributors": [
+    "SunLxy <1011771396@qq.com>",
+    "Kenny Wong <wowohoo@qq.com>"
+  ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "esm/index.js",

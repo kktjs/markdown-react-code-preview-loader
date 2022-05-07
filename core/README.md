@@ -1,19 +1,19 @@
 markdown-react-code-preview-loader
 ===
 
-当前包是 `webpack` 的 `loader`，通过配置当前 `loader` 加载 `markdown` 文档，返回一个 `JS` 对象，包含 `markdown` 文本，`markdown` 文本中的示例索引。
+Index example text in Markdown, converted to React components. The current package is the `loader` of `webpack`, which loads the `markdown` document by configuring the current `loader`, returning a `JS` object containing the `markdown` text, the example index in the `markdown` text.
 
-## 安装 Loader
+## Install Loader
 
 ```bash
 npm i markdown-react-code-preview-loader -D
 ```
 
-## 配置 Loader
+## Configure Loader
 
-安装依赖(loader)之后，我们需要将 `loader` 配置到 `webpack` 配置中，通过在 `kkt` 中两种配置方法，了解如何使用配置 `loader`。
+After installing the dependency (loader), we need to configure the `loader` into the `webpack` configuration. Learn how to use the configuration `loader` by using two configuration methods in `kkt`.
 
-**第 ① 种方法，使用 mdCodeModulesLoader 方法**
+**① The first method, use the mdCodeModulesLoader method**
 
 ```ts
 // .kktrc.ts
@@ -29,7 +29,9 @@ export default (conf: WebpackConfiguration, env: 'development' | 'production', o
 };
 ```
 
-**第 ② 种方法，自己手动添加配置，在 Webpack 中配置使用方法是一样的**
+**② The second method is to manually add the configuration**
+
+The configuration and usage methods are consistent in Webpack.
 
 ```ts
 // .kktrc.ts
@@ -59,20 +61,20 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 };
 ```
 
-### options 参数
+### options parameter
 
-- lang: 需要解析代码块的语言，默认: `["jsx","tsx"]`
+- lang: Language to parse code blocks, default: `["jsx","tsx"]`
 
-## 使用
+## Used in the project
 
-添加 `loader` 之后，在项目工程中加载 `markdown` 文本使用方法：
+After adding `loader`, use the method to load `markdown` text in the project project:
 
 ```jsx
 import mdObj from 'markdown-react-code-preview-loader/README.md';
 
-mdObj.source       // => `README.md` 原始字符串文本
-mdObj.components   // => 组件索引对象，从 markdown 索引到的示例转换成的 React 组件。(需要配置 meta)
-mdObj.codeBlock    // => 组件源码索引对象，从 markdown 索引到的示例源码。(需要配置 meta)
+mdObj.source       // => `README.md` raw string text
+mdObj.components   // => The component index object, the React component converted from the markdown indexed example. (need to configure meta)
+mdObj.codeBlock    // => The component source code index object, the sample source code indexed from markdown. (need to configure meta)
 ```
 
 ```js
@@ -99,15 +101,15 @@ export type CodeBlockData = {
 
 ## getCodeBlockString 
 
-传递 `markdown` 文件内容字符串，返回转换好的需要预览的代码块解析数据。
+Pass the `markdown` file content string, and return the converted code block parsing data that needs to be previewed.
 
-## 配置 meta 标识
+## Configure meta ID
 
-注意：需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
+Note: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
 
-1. `mdx:` 特殊标识前缀
-2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
-3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。
+1. `mdx:` special identifier prefix
+2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
+3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
 
 ```markdown mdx:preview
 \```tsx
