@@ -8,7 +8,6 @@ const Preview = (props: PreviewProps) => {
   const {
     code,
     className = '',
-    isSpacing = true,
     copyNodes = '',
     codePenOptions,
     codeSandboxOptions,
@@ -18,7 +17,7 @@ const Preview = (props: PreviewProps) => {
     ...rest
   } = props;
   return (
-    <div className={`preview-fieldset ${(isSpacing && 'preview-fieldset-warp') || ''} ${className}`}>
+    <div className={`preview-fieldset preview-fieldset-warp ${className}`}>
       <div {...rest} className={`preview-body ${previewBodyClassName}`} />
       <Code
         language={language}

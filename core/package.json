@@ -23,6 +23,7 @@
     "remark": "~13.0.0"
   },
   "devDependencies": {
-    "@types/babel__standalone": "^7.1.4"
+    "@types/babel__standalone": "^7.1.4",
+    "webpack": "^5.72.0"
   }
 }
