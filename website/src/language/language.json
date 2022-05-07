@@ -1,10 +1,14 @@
 {
   "zh": {
     "label": "中文",
-    "value": "-zh"
+    "value": "-zh",
+    "markdown-react-code-preview-loader": "README-zh",
+    "App": "App-zh"
   },
   "en": {
     "label": "英文",
-    "value": ""
+    "value": "",
+    "markdown-react-code-preview-loader": "README",
+    "App": "App"
   }
 }
