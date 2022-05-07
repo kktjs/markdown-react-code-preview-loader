@@ -36,11 +36,12 @@ const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['js
       const line = item.position.start.line;
       const metaData = getMate(item.meta);
       if (metaData.preview) {
+        let name = typeof metaData.preview === 'string' ? metaData.preview : line;
         const funName = `BaseCode${line}`;
         const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName);
         codeBlock[line] = {
           code: returnCode,
-          name: metaData.name || line,
+          name,
           language: item.lang,
           value: item.value,
         };
