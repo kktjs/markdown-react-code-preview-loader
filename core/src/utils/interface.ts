@@ -29,4 +29,6 @@ export type CodeBlockItemType = {
   value?: string;
   /** 语言 **/
   language?: string;
+  /** 取值名称 */
+  name?: string | number | boolean;
 };

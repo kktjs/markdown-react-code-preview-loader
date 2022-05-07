@@ -22,7 +22,7 @@
     "@uiw/react-layout": "~5.0.0-beta.1"
   },
   "devDependencies": {
-    "md-loader": "1.0.0",
+    "markdown-react-code-preview-loader": "1.0.0",
     "@kkt/less-modules": "~7.1.1",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",

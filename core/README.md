@@ -1,10 +1,10 @@
-md-loader
+markdown-react-code-preview-loader
 ===========
 
-解析 markdown 预览代码块，转换成可预览的内容
+解析 markdown 预览代码块,代码块中设置`mate`值，控制是否需要转换预览，把需要的转换的转换成可预览的内容
 
 ```bash
- npm i md-loader
+ npm i markdown-react-code-preview-loader
 ```
 
 > 返回值：
@@ -30,7 +30,7 @@ export type MdLoaderReturn = {
 
 ## mdCodeModulesLoader
 
-在`webpack`配置中添加`md-loader`的`loader`配置
+在`webpack`配置中添加`markdown-react-code-preview-loader`的`loader`配置
 
 ## kkt中用法
 
@@ -44,7 +44,7 @@ export type MdLoaderReturn = {
 import webpack, { Configuration } from 'webpack';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions } from 'kkt';
-import { mdCodeModulesLoader } from 'md-loader';
+import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   // ....
@@ -73,7 +73,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
           test: /.md$/,
           use: [
             {
-              loader: 'md-loader',
+              loader: 'markdown-react-code-preview-loader',
               options: { lang:["jsx","tsx"] },
             },
           ],
@@ -90,3 +90,21 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 ## options参数
 
 > lang: 需要解析代码块的语言,默认:`["jsx","tsx"]`
+
+## markdown 设置 mate 值
+
+> preview: 控制是否进行进行预览的
+
+```markdown
+
+\```tsx | preview 
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
+
+export default Demo
+
+\```    
+
+```

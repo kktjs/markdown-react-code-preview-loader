@@ -31,7 +31,8 @@ export default function App() {
   });
   React.useEffect(() => {
     const getMd = async () => {
-      const result = await import(`@uiw/react-layout/README${lang}.md`);
+      // const result = await import(`@uiw/react-layout/README${lang}.md`);
+      const result = await import(`./App${lang}.md`);
       if (result.default) {
         setMdData(result.default);
       }
@@ -78,6 +79,7 @@ export default function App() {
             if (Object.keys(config).filter((name) => config[name] !== undefined).length === 0) {
               return <code {...props} />;
             }
+            console.log(node, props);
             const line = node.position?.start.line;
             const Child = mdData.BaseCodeData[line || ''];
             if (typeof line === 'number' && typeof Child === 'function') {
@@ -88,7 +90,7 @@ export default function App() {
                 </PreView>
               );
             }
-            return <React.Fragment />;
+            return <code {...rest} />;
           },
         }}
       />

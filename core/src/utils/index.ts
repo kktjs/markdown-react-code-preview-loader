@@ -2,7 +2,7 @@
  * @Description: markdown 转化
  */
 import { MarkDownTreeType, CodeBlockItemType } from './interface';
-import { transformCode } from './transform';
+import { getTransformValue } from './transform';
 import webpack from 'webpack';
 export * from './interface';
 import remark from 'remark';
@@ -13,6 +13,20 @@ const getProcessor = (scope: string) => {
   return child.children;
 };
 
+const getMate = (meta: string | null): Record<string, string | boolean> => {
+  let metaData: Record<string, string | boolean> = {};
+  if (meta) {
+    meta.split(/\|/).forEach((item) => {
+      const value = item.trim();
+      if (value) {
+        const [field, val] = value.split(':');
+        metaData[field] = val || true;
+      }
+    });
+  }
+  return metaData;
+};
+
 /** 获取需要渲染的代码块 **/
 const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['jsx', 'tsx']) => {
   // 获取渲染部分
@@ -20,15 +34,16 @@ const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['js
   child.forEach((item) => {
     if (item && item.type === 'code' && lang.includes(item.lang)) {
       const line = item.position.start.line;
-      if (/export default/.test(item.value)) {
-        const result = transformCode(item.value, item.lang, `BaseCode${line}`);
-        if (result.isDefault) {
-          codeBlock[line] = {
-            ...result,
-            language: item.lang,
-            value: item.value,
-          };
-        }
+      const metaData = getMate(item.meta);
+      if (metaData.preview) {
+        const funName = `BaseCode${line}`;
+        const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName);
+        codeBlock[line] = {
+          code: returnCode,
+          name: metaData.name || line,
+          language: item.lang,
+          value: item.value,
+        };
       }
     }
   });
@@ -41,11 +56,11 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
   let codeBlockValue = ``;
   let languageStr = ``;
   Object.entries(codeBlock).forEach(([key, item]) => {
-    const { code, value, language } = item;
+    const { code, value, language, name } = item;
     baseCodeStr += `${code};\n`;
-    baseCodeObjStr += `${key}:BaseCode${key},\n`;
-    codeBlockValue += `${key}:\`${value}\`,\n`;
-    languageStr += `${key}:\`${language}\`,\n`;
+    baseCodeObjStr += `${name}:BaseCode${key},\n`;
+    codeBlockValue += `${name}:\`${value}\`,\n`;
+    languageStr += `${name}:\`${language}\`,\n`;
   });
   let indexStr = `${baseCodeStr} const languageData={${languageStr}};\n const codeBlockValue={${codeBlockValue}};\n const BaseCodeData={${baseCodeObjStr}}`;
   return indexStr;
@@ -72,7 +87,7 @@ export const mdCodeModulesLoader = (config: webpack.Configuration, lang?: string
           test: /.md$/,
           use: [
             {
-              loader: 'md-loader',
+              loader: 'markdown-react-code-preview-loader',
               options: { lang },
             },
           ],

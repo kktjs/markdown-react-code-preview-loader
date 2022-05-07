@@ -5,7 +5,7 @@ import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions } from 'kkt';
 import pkg from './package.json';
-import { mdCodeModulesLoader } from 'md-loader';
+import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);

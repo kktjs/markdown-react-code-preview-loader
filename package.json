@@ -3,8 +3,8 @@
   "scripts": {
     "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
     "build": "npm run build:loader && npm run build:code",
-    "build:loader": "lerna exec --scope md-loader -- npm run build",
-    "watch:loader": "lerna exec --scope md-loader -- npm run watch",
+    "build:loader": "lerna exec --scope markdown-react-code-preview-loader -- npm run build",
+    "watch:loader": "lerna exec --scope markdown-react-code-preview-loader -- npm run watch",
     "build:code": "lerna exec --scope code-layout -- npm run build",
     "watch:code": "lerna exec --scope code-layout -- npm run watch",
     "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
@@ -17,7 +17,7 @@
     "prepare": "husky install",
     "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "remove": "npm run clean && lerna exec \"rm -rf package-lock.json\" --scope md-loader --scope website",
+    "remove": "npm run clean && lerna exec \"rm -rf package-lock.json\" --scope markdown-react-code-preview-loader --scope website",
     "clean": "lerna clean --yes"
   },
   "lint-staged": {
