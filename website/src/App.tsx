@@ -14,6 +14,17 @@ const language = {
   },
 };
 
+const getMetaData = (meta: string) => {
+  if (meta) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [field, name] = meta.split(':').map((item) => item.trim());
+    if (name) {
+      return name;
+    }
+  }
+  return '';
+};
+
 export type MdDataType = {
   source: string;
   BaseCodeData: Record<string | number, React.FC>;
@@ -62,27 +73,37 @@ export default function App() {
            * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
            */
           code: ({ inline, node, ...props }) => {
-            const { name, noPreview, noScroll, bgWhite, noCode, codePen, codeSandboxOption, codeSandbox, ...rest } =
-              props as any;
-
-            if (inline) {
-              return <code {...props} />;
-            }
-            const config = {
+            const {
+              'data-meta': meta,
               noPreview,
               noScroll,
               bgWhite,
               noCode,
               codePen,
               codeSandboxOption,
-            } as any;
-            if (Object.keys(config).filter((name) => config[name] !== undefined).length === 0) {
+              codeSandbox,
+              ...rest
+            } = props as any;
+
+            if (inline) {
               return <code {...props} />;
             }
+            // const config = {
+            //   noPreview,
+            //   noScroll,
+            //   bgWhite,
+            //   noCode,
+            //   codePen,
+            //   codeSandboxOption,
+            // } as any;
+            // if (Object.keys(config).filter((name) => config[name] !== undefined).length === 0) {
+            //   return <code {...props} />;
+            // }
             const line = node.position?.start.line;
-            const Child = mdData.BaseCodeData[name || line || ''];
-            if (typeof line === 'number' && typeof Child === 'function') {
-              const copyNodes = mdData.codeBlockValue[line] || '';
+            const funName = getMetaData(meta || '') || line;
+            const Child = mdData.BaseCodeData[funName || ''];
+            if (funName && typeof Child === 'function') {
+              const copyNodes = mdData.codeBlockValue[funName] || '';
               return (
                 <PreView code={<code {...rest} />} copyNodes={copyNodes}>
                   <Child />

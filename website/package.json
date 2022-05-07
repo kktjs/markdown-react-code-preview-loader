@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@uiw/react-github-corners": "~1.5.3",
-    "@uiw/react-markdown-preview": "~4.0.6",
+    "@uiw/react-markdown-preview": "~4.0.7",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "uiw": "^4.21.7",
