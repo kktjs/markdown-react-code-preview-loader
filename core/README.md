@@ -3,6 +3,10 @@ md-loader
 
 解析 markdown 预览代码块，转换成可预览的内容
 
+```bash
+ npm i md-loader
+```
+
 > 返回值：
 >
 > 1. source: `markdown`文件字符串
