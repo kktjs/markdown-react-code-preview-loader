@@ -13,7 +13,7 @@ const getProcessor = (scope: string) => {
   return child.children;
 };
 
-const getMate = (meta: string | null): Record<string, string | boolean> => {
+const getMeta = (meta: string | null): Record<string, string | boolean> => {
   let metaData: Record<string, string | boolean> = {};
   if (meta) {
     meta.split(/\|/).forEach((item) => {
@@ -34,7 +34,7 @@ const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['js
   child.forEach((item) => {
     if (item && item.type === 'code' && lang.includes(item.lang)) {
       const line = item.position.start.line;
-      const metaData = getMate(item.meta);
+      const metaData = getMeta(item.meta);
       if (metaData.preview) {
         let name = typeof metaData.preview === 'string' ? metaData.preview : line;
         const funName = `BaseCode${line}`;

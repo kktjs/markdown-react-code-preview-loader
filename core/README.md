@@ -1,7 +1,7 @@
 markdown-react-code-preview-loader
 ===========
 
-解析 markdown 预览代码块,代码块中设置`mate`值，控制是否需要转换预览，把需要的转换的转换成可预览的内容
+解析 markdown 预览代码块,代码块中设置`meta`值，控制是否需要转换预览，把需要的转换的转换成可预览的内容
 
 ```bash
  npm i markdown-react-code-preview-loader
@@ -91,7 +91,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 > lang: 需要解析代码块的语言,默认:`["jsx","tsx"]`
 
-## markdown 设置 mate 值
+## markdown 设置 meta 值
 
 > 1. preview: 控制是否进行进行预览的
 > 2. preview:demo12:`demo12`是设置一个保存方法的名称，根据这个设置的值获取渲染数据,默认这个值是所属code代码块开始行值
