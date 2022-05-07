@@ -109,7 +109,7 @@ Pass the `markdown` file content string, and return the converted code block par
 
 ## Configure meta ID
 
-Note: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
+Note ⚠️: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
 
 1. `mdx:` special identifier prefix
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
