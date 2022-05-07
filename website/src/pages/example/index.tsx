@@ -14,7 +14,7 @@ const getMetaData = (meta: string) => {
 };
 
 export function ExamplePage() {
-  const mdData = useMdData((path) => import(`./${path}.md`), 'App');
+  const mdData = useMdData((path) => import(`./App${path}.md`));
   return (
     <div>
       <MarkdownPreview

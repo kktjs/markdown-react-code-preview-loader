@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import { useTranslation } from 'react-i18next';
 
-const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, name: string = 'language') => {
+const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, name: string = 'md-language-name') => {
   const init = useTranslation();
   const [mdData, setMdData] = useState<CodeBlockData>({
     source: '',

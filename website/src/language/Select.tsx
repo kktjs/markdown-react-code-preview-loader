@@ -4,17 +4,17 @@ import { Select } from 'uiw';
 import { useTranslation } from 'react-i18next';
 
 const Language = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const Options = React.useMemo(() => {
-    return Object.entries(languageData).map(([key, item]) => {
+    return (languageData || []).map((key) => {
       return (
         <Select.Option key={key} value={key}>
-          {item.label}
+          {t(key)}
         </Select.Option>
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(languageData)]);
+  }, [JSON.stringify(languageData), i18n.language]);
 
   return (
     <div style={{ width: 100 }}>
