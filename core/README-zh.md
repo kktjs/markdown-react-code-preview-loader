@@ -115,8 +115,8 @@ export type CodeBlockData = {
 2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
 3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。
 
-```markdown mdx:preview
-\```tsx
+```markdown
+\```tsx mdx:preview
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
