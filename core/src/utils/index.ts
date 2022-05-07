@@ -5,18 +5,17 @@ import { MarkDownTreeType, CodeBlockItemType } from './interface';
 import { transformCode } from './transform';
 import webpack from 'webpack';
 export * from './interface';
-export * from './transform';
 import remark from 'remark';
 import getCacheIdentifier from 'react-dev-utils/getCacheIdentifier';
 
 /** 转换 代码*/
-export const getProcessor = (scope: string) => {
+const getProcessor = (scope: string) => {
   const child = remark.parse(scope) as MarkDownTreeType;
   return child.children;
 };
 
 /** 获取需要渲染的代码块 **/
-export const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['jsx', 'tsx']) => {
+const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['jsx', 'tsx']) => {
   // 获取渲染部分
   const codeBlock: Record<string | number, CodeBlockItemType> = {};
   child.forEach((item) => {
