@@ -1,6 +1,10 @@
 markdown-react-code-preview-loader
 ===
 
+[![CI](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml/badge.svg)](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/markdown-react-code-preview-loader.svg)](https://www.npmjs.com/package/markdown-react-code-preview-loader)
+[![npm unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/markdown-react-code-preview-loader/file/README.md)
+
 索引 Markdown 中的示例文本，转换为 React 组件。当前包是 `webpack` 的 `loader`，通过配置当前 `loader` 加载 `markdown` 文档，返回一个 `JS` 对象，包含 `markdown` 文本，`markdown` 文本中的示例索引。
 
 ## 安装 Loader
@@ -111,8 +115,8 @@ export type CodeBlockData = {
 2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
 3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。
 
-```markdown mdx:preview
-\```tsx
+```markdown
+\```tsx mdx:preview
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
@@ -131,7 +135,7 @@ export default Demo
 \```
 ```
 
-## Development
+## 开发
 
 ```bash
 npm install   # Install dependencies
@@ -140,6 +144,17 @@ npm run hoist # Install sub packages dependencies
 npm run watch:loader
 npm run start
 ```
+
+## 贡献者
+
+一如既往，感谢我们出色的贡献者！
+
+<a href="https://github.com/kktjs/markdown-react-code-preview-loader/graphs/contributors">
+  <img src="https://kktjs.github.io/markdown-react-code-preview-loader/CONTRIBUTORS.svg" />
+</a>
+
+由 [action-contributors](https://github.com/jaywcjlove/github-action-contributors) 生成。
+
 ### License
 
 Licensed under the MIT License.

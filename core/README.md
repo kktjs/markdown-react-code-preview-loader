@@ -1,6 +1,10 @@
 markdown-react-code-preview-loader
 ===
 
+[![CI](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml/badge.svg)](https://github.com/kktjs/markdown-react-code-preview-loader/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/markdown-react-code-preview-loader.svg)](https://www.npmjs.com/package/markdown-react-code-preview-loader)
+[![npm unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/markdown-react-code-preview-loader/file/README.md)
+
 Index example text in Markdown, converted to React components. The current package is the `loader` of `webpack`, which loads the `markdown` document by configuring the current `loader`, returning a `JS` object containing the `markdown` text, the example index in the `markdown` text.
 
 ## Install Loader
@@ -111,8 +115,8 @@ Note: You need to add a special `meta` identifier to the code block example, and
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
 3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
 
-```markdown mdx:preview
-\```tsx
+```markdown
+\```tsx mdx:preview
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
@@ -140,6 +144,17 @@ npm run hoist # Install sub packages dependencies
 npm run watch:loader
 npm run start
 ```
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/kktjs/markdown-react-code-preview-loader/graphs/contributors">
+  <img src="https://kktjs.github.io/markdown-react-code-preview-loader/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+
 ### License
 
 Licensed under the MIT License.
