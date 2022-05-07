@@ -115,26 +115,27 @@ Note: You need to add a special `meta` identifier to the code block example, and
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
 3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
 
+```markdown
+\```tsx mdx:preview
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
 
-    ```tsx mdx:preview
-    import React from "react"
-    const Demo = ()=>{
-      return <div>测试</div>
-    }
+export default Demo
+\```
+```
 
-    export default Demo
-    ```  
+```markdown
+\```tsx mdx:preview:demo12
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
 
-
-    ```tsx mdx:preview:demo12
-    import React from "react"
-    const Demo = ()=>{
-      return <div>测试</div>
-    }
-
-    export default Demo
-    ```
-
+export default Demo
+\```
+```
 
 ## Development
 
