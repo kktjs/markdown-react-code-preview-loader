@@ -59,7 +59,7 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
     codeBlockValue += `${name}:\`${value}\`,\n`;
     languageStr += `${name}:\`${language}\`,\n`;
   });
-  let indexStr = `${baseCodeStr} const languageData={${languageStr}};\n const codeBlockValue={${codeBlockValue}};\n const BaseCodeData={${baseCodeObjStr}}`;
+  let indexStr = `${baseCodeStr} const languages={${languageStr}};\n const codeBlock={${codeBlockValue}};\n const components={${baseCodeObjStr}}`;
   return indexStr;
 };
 

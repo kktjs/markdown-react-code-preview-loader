@@ -1,65 +1,61 @@
 markdown-react-code-preview-loader
-===========
+===
 
-解析 markdown 预览代码块,代码块中设置`meta`值，控制是否需要转换预览，把需要的转换的转换成可预览的内容
+当前包是 `webpack` 的 `loader`，通过配置当前 `loader` 加载 `markdown` 文档，返回一个 `JS` 对象，包含 `markdown` 文本，`markdown` 文本中的示例索引。
+
+## 安装使用
 
 ```bash
- npm i markdown-react-code-preview-loader
+npm i markdown-react-code-preview-loader -D
 ```
 
-> 返回值：
->
-> 1. source: `markdown`文件字符串
-> 2. BaseCodeData: 行(或自定义的值)对应的可渲染的内容
-> 3. codeBlockValue: 行(或自定义的值)对应的原代码块字符串
-> 4. languageData: 行(或自定义的值)对应的代码块语言
->
+添加 `loader` 之后，在项目工程中加载 `markdown` 文本使用方法：
+
+```jsx
+import mdObj from 'markdown-react-code-preview-loader/README.md';
+
+mdObj.source       // => `README.md` 原始字符串文本
+mdObj.components   // => 组件索引对象，从 markdown 索引到的示例转换成的 React 组件。(需要配置 meta)
+mdObj.codeBlock    // => 组件源码索引对象，从 markdown 索引到的示例源码。(需要配置 meta)
+```
 
 ```ts
-export type MdLoaderReturn = {
+export type CodeBlockData = {
   source: string;
-  BaseCodeData: Record<string | number, React.FC>
-  codeBlockValue: Record<string | number, string>
-  languageData: Record<string | number, string>
-}
+  components: Record<string | number, React.FC>;
+  codeBlock: Record<string | number, string>;
+  languages: Record<string | number, string>;
+};
 ```
 
 ## getCodeBlockString 
 
-传递`markdown`文件内容字符串,返回转换好的需要预览的代码块解析数据
+传递 `markdown` 文件内容字符串，返回转换好的需要预览的代码块解析数据。
 
 ## mdCodeModulesLoader
 
-在`webpack`配置中添加`markdown-react-code-preview-loader`的`loader`配置
+当前方法是 `webpack` 的 `loader`，通过在 kkt 中两种配置方法，了解如何使用配置 loader。
 
-## kkt中用法
-
-在[kkt](https://github.com/kktjs/kkt)中使用方式
-
-**第一种使用mdCodeModulesLoader方法**
+**第 ① 种方法，使用 mdCodeModulesLoader 方法**
 
 ```ts
 // .kktrc.ts
-
-import webpack, { Configuration } from 'webpack';
 import scopePluginOptions from '@kkt/scope-plugin-options';
-import { LoaderConfOptions } from 'kkt';
+import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
 import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
-export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+export default (conf: WebpackConfiguration, env: 'development' | 'production', options: LoaderConfOptions) => {
   // ....
   conf = mdCodeModulesLoader(conf);
   // ....
   return conf;
 };
-
 ```
 
-**第二种直接自己添加**
+**第 ② 种方法，自己手动添加配置，在 Webpack 中配置使用方法是一样的**
 
 ```ts
 // .kktrc.ts
-
 import webpack, { Configuration } from 'webpack';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions } from 'kkt';
@@ -84,29 +80,28 @@ export default (conf: Configuration, env: 'development' | 'production', options:
   // ....
   return conf;
 };
-
 ```
 
-## options参数
+### options 参数
 
-> lang: 需要解析代码块的语言,默认:`["jsx","tsx"]`
+- lang: 需要解析代码块的语言，默认: `["jsx","tsx"]`
 
-## markdown 设置 meta 值
+## Markdown 设置 meta 值
 
-> 1. mdx:: 特殊标识
-> 2. mdx:preview: 控制是否进行进行预览的
-> 3. mdx:preview:demo12:`demo12`是设置的一个保存渲染数据的变量名称，根据这个设置的变量名称获取渲染数据,默认这个值是所属code代码块开始行值
+需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
 
-```markdown
+1. `mdx:` 特殊标识前缀
+2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
+3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。
 
-\```tsx mdx:preview
+```markdown mdx:preview
+\```tsx
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
 }
 
 export default Demo
-
 \```  
 
 \```tsx mdx:preview:demo12
@@ -116,7 +111,18 @@ const Demo = ()=>{
 }
 
 export default Demo
-
-\``` 
-
+\```
 ```
+
+## Development
+
+```bash
+npm install   # Install dependencies
+npm run hoist # Install sub packages dependencies
+
+npm run watch:loader
+npm run start
+```
+### License
+
+Licensed under the MIT License.

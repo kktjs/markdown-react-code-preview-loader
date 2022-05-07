@@ -1,0 +1,54 @@
+[data-color-mode*='light'],
+[data-color-mode*='light'] body {
+  --color-header-bg: #ffffff52;
+  --color-header-border: #d3d3d3;
+  --color-hover: #0000001a;
+  --color-text-bg: #00000008;
+}
+[data-color-mode*='dark'],
+[data-color-mode*='dark'] body {
+  --color-header-bg: #3a3a3a8f;
+  --color-header-border: #21262d;
+  --color-hover: #ffffff1c;
+  --color-text-bg: #fffefe08;
+}
+
+.warpper {
+  padding: 25px 15px 35px 15px;
+}
+
+.header nav,
+.warpper {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.header {
+  padding: 12px 0;
+  background: var(--color-header-bg);
+  backdrop-filter: saturate(180%) blur(0.4rem);
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-header-border);
+}
+.header nav {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  gap: 10px;
+  font-size: 14px;
+}
+.header nav a {
+  padding: 4px 8px;
+}
+.header :global(.active) {
+  background-color: var(--color-hover);
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

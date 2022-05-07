@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "markdown-react-code-preview-loader",
   "version": "1.0.0",
   "description": "解析 markdown 预览代码块，转换成可预览的内容",

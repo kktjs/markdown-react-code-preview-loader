@@ -1,6 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "website",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Simple React package development project example template.",
   "private": true,
   "scripts": {
@@ -15,23 +16,25 @@
   "dependencies": {
     "@uiw/react-github-corners": "~1.5.3",
     "@uiw/react-markdown-preview": "~4.0.7",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "uiw": "^4.21.7",
     "@uiw/react-layout": "~5.0.0-beta.1",
     "@uiw/react-stackblitz": "~1.0.5",
     "@uiw/react-codesandbox": "~1.1.5",
     "@uiw/react-codepen": "~1.0.2",
-    "@uiw/copy-to-clipboard": "^1.0.12"
+    "@uiw/copy-to-clipboard": "^1.0.12",
+    "@wcj/dark-mode": "^1.0.14",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-router-dom": "^6.3.0",
+    "uiw": "^4.21.7"
   },
   "devDependencies": {
-    "markdown-react-code-preview-loader": "1.0.0",
     "@kkt/less-modules": "~7.1.1",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
-    "kkt": "~7.1.5"
+    "kkt": "~7.1.5",
+    "markdown-react-code-preview-loader": "1.0.0"
   },
   "eslintConfig": {
     "extends": [

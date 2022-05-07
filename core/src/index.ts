@@ -1,11 +1,12 @@
 import { getCodeBlockString } from './utils';
 import React from 'react';
 export * from './utils';
-export type MdLoaderReturn = {
+
+export type CodeBlockData = {
   source: string;
-  BaseCodeData: Record<string | number, React.FC>;
-  codeBlockValue: Record<string | number, string>;
-  languageData: Record<string | number, string>;
+  components: Record<string | number, React.FC>;
+  codeBlock: Record<string | number, string>;
+  languages: Record<string | number, string>;
 };
 
 export default function (source: string) {
@@ -15,9 +16,9 @@ export default function (source: string) {
     ${result}
     export default {
       source:${JSON.stringify(source)},
-      BaseCodeData,
-      codeBlockValue,
-      languageData
+      components,
+      codeBlock,
+      languages
     }
 `;
 }
