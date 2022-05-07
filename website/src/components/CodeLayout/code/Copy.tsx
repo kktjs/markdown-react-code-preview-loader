@@ -31,12 +31,13 @@ const Copy = (props: CodeProps) => {
     if (isCopy) {
       return (
         <div ref={copyRef} onClick={onCopy} className="preview-button-span preview-button-copy">
-          <img className="copy" width={20} height={20} src={copy} />
-          <img className="check" width={20} height={20} src={checkSign} />
+          <img alt="" className="copy" width={20} height={20} src={copy} />
+          <img alt="" className="check" width={20} height={20} src={checkSign} />
         </div>
       );
     }
     return <React.Fragment />;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCopy, copyNodes]);
 
   return <React.Fragment>{CopyRender}</React.Fragment>;
