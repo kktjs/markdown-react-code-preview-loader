@@ -62,7 +62,7 @@ export default function App() {
            * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
            */
           code: ({ inline, node, ...props }) => {
-            const { noPreview, noScroll, bgWhite, noCode, codePen, codeSandboxOption, codeSandbox, ...rest } =
+            const { name, noPreview, noScroll, bgWhite, noCode, codePen, codeSandboxOption, codeSandbox, ...rest } =
               props as any;
 
             if (inline) {
@@ -79,9 +79,8 @@ export default function App() {
             if (Object.keys(config).filter((name) => config[name] !== undefined).length === 0) {
               return <code {...props} />;
             }
-            console.log(node, props);
             const line = node.position?.start.line;
-            const Child = mdData.BaseCodeData[line || ''];
+            const Child = mdData.BaseCodeData[name || line || ''];
             if (typeof line === 'number' && typeof Child === 'function') {
               const copyNodes = mdData.codeBlockValue[line] || '';
               return (

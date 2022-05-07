@@ -94,10 +94,11 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 ## markdown 设置 mate 值
 
 > preview: 控制是否进行进行预览的
+> name:设置一个保存方法的名称，通过这个设置的值获取渲染数据
 
 ```markdown
 
-\```tsx | preview 
+\```tsx | preview | name:base123
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
