@@ -86,10 +86,10 @@ mdObj.codeBlock    // => 组件源码索引对象，从 markdown 索引到的示
   codeBlock: {
     17: 'import React from ...',
     77: 'import React from ...',
-    base23: 'import React from ...'
+    demo12: 'import React from ...'
   },
-  components: { 17: ƒ, 77: ƒ, base23: ƒ },
-  languages: { 17: 'jsx', 77: 'jsx', base23: 'jsx'},
+  components: { 17: ƒ, 77: ƒ, demo12: ƒ },
+  languages: { 17: 'jsx', 77: 'jsx', demo12: 'jsx'},
   source: "# Alert 确认对话框...."
 }
 ```
@@ -109,7 +109,7 @@ export type CodeBlockData = {
 
 ## 配置 meta 标识
 
-注意：需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
+注意 ⚠️：需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
 
 1. `mdx:` 特殊标识前缀
 2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
@@ -123,8 +123,10 @@ const Demo = ()=>{
 }
 
 export default Demo
-\```  
+\```
+```
 
+```markdown
 \```tsx mdx:preview:demo12
 import React from "react"
 const Demo = ()=>{

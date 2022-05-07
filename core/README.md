@@ -86,10 +86,10 @@ mdObj.codeBlock    // => The component source code index object, the sample sour
   codeBlock: {
     17: 'import React from ...',
     77: 'import React from ...',
-    base23: 'import React from ...'
+    demo12: 'import React from ...'
   },
-  components: { 17: ƒ, 77: ƒ, base23: ƒ },
-  languages: { 17: 'jsx', 77: 'jsx', base23: 'jsx'},
+  components: { 17: ƒ, 77: ƒ, demo12: ƒ },
+  languages: { 17: 'jsx', 77: 'jsx', demo12: 'jsx'},
   source: "# Alert 确认对话框...."
 }
 ```
@@ -109,7 +109,7 @@ Pass the `markdown` file content string, and return the converted code block par
 
 ## Configure meta ID
 
-Note: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
+Note ⚠️: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
 
 1. `mdx:` special identifier prefix
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
@@ -123,8 +123,10 @@ const Demo = ()=>{
 }
 
 export default Demo
-\```  
+\```
+```
 
+```markdown
 \```tsx mdx:preview:demo12
 import React from "react"
 const Demo = ()=>{
