@@ -98,7 +98,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ```markdown
 
-\```tsx | preview
+\```tsx preview
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
@@ -108,7 +108,7 @@ export default Demo
 
 \```  
 
-\```tsx | preview:demo12
+\```tsx preview:demo12
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
