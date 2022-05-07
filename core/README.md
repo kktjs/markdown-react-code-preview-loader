@@ -10,9 +10,9 @@ markdown-react-code-preview-loader
 > 返回值：
 >
 > 1. source: `markdown`文件字符串
-> 2. BaseCodeData: 行对应的可渲染的内容
-> 3. codeBlockValue: 行对应的原代码块字符串
-> 4. languageData: 行对应的代码块语言
+> 2. BaseCodeData: 行(或自定义的值)对应的可渲染的内容
+> 3. codeBlockValue: 行(或自定义的值)对应的原代码块字符串
+> 4. languageData: 行(或自定义的值)对应的代码块语言
 >
 
 ```ts
@@ -94,7 +94,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 ## markdown 设置 meta 值
 
 > 1. preview: 控制是否进行进行预览的
-> 2. preview:demo12:`demo12`是设置一个保存方法的名称，根据这个设置的值获取渲染数据,默认这个值是所属code代码块开始行值
+> 2. preview:demo12:`demo12`是设置的一个保存渲染数据的变量名称，根据这个设置的变量名称获取渲染数据,默认这个值是所属code代码块开始行值
 
 ```markdown
 
