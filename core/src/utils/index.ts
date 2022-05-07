@@ -16,15 +16,9 @@ const getProcessor = (scope: string) => {
 const getMeta = (meta: string | null): Record<string, string | boolean> => {
   let metaData: Record<string, string | boolean> = {};
   if (meta) {
-    const [field, val] = meta.split(':');
+    const [metaItem] = /dj:(.[\w|:]+)/i.exec(meta) || [];
+    const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
     metaData[field] = val || true;
-    // meta.split(/\|/).forEach((item) => {
-    //   const value = item.trim();
-    //   if (value) {
-    //     const [field, val] = value.split(':');
-    //     metaData[field] = val || true;
-    //   }
-    // });
   }
   return metaData;
 };

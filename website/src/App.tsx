@@ -16,10 +16,11 @@ const language = {
 
 const getMetaData = (meta: string) => {
   if (meta) {
+    const [metaItem] = /dj:(.[\w|:]+)/i.exec(meta) || [];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [field, name] = meta.split(':').map((item) => item.trim());
-    if (name) {
-      return name;
+    const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
+    if (val) {
+      return val;
     }
   }
   return '';

@@ -93,12 +93,13 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ## markdown 设置 meta 值
 
-> 1. preview: 控制是否进行进行预览的
-> 2. preview:demo12:`demo12`是设置的一个保存渲染数据的变量名称，根据这个设置的变量名称获取渲染数据,默认这个值是所属code代码块开始行值
+> 1. dj: 特殊标识
+> 2. dj:preview: 控制是否进行进行预览的
+> 3. dj:preview:demo12:`demo12`是设置的一个保存渲染数据的变量名称，根据这个设置的变量名称获取渲染数据,默认这个值是所属code代码块开始行值
 
 ```markdown
 
-\```tsx preview
+\```tsx dj:preview
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
@@ -108,7 +109,7 @@ export default Demo
 
 \```  
 
-\```tsx preview:demo12
+\```tsx dj:preview:demo12
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>
