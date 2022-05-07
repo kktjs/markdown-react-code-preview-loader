@@ -8,7 +8,8 @@ export default function (source: string) {
     export default {
       source:${JSON.stringify(source)},
       BaseCodeData,
-      codeBlockValue
+      codeBlockValue,
+      languageData
     }
 `;
 }
