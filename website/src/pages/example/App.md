@@ -11,11 +11,14 @@ import { Alert } from "uiw";
 // or
 import Alert from "@uiw/react-alert";
 ```
-
+`import React from 'react'`
 ## Basic Usage
 
 ```jsx mdx:preview
-import React from "react";
+import React,{ 
+  useState,
+  useEffect,
+} from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
 
