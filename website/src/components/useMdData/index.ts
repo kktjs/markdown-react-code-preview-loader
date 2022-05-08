@@ -11,7 +11,10 @@ const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, 
     languages: {},
   });
   const lang = init.t(name);
+
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(() => true);
     const getMd = async () => {
       try {
         const result = await path(lang);
@@ -21,10 +24,12 @@ const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, 
       } catch (err) {
         console.warn(err);
       }
+      setLoading(() => false);
     };
     getMd();
-  }, [lang, path]);
-  return mdData;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+  return { mdData, loading };
 };
 
 export default useMdData;

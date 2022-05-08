@@ -1,6 +1,8 @@
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import PreView from '../../components/CodeLayout';
 import useMdData from './../../components/useMdData';
+import { Loader } from 'uiw';
+
 const getMetaData = (meta: string) => {
   if (meta) {
     const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
@@ -14,9 +16,9 @@ const getMetaData = (meta: string) => {
 };
 
 export function ExamplePage() {
-  const mdData = useMdData((path) => import(`./App${path}.md`));
+  const { mdData, loading } = useMdData((path) => import(`./App${path}.md`));
   return (
-    <div>
+    <Loader style={{ width: '100%' }} loading={loading} tip="loading...">
       <MarkdownPreview
         source={mdData.source}
         components={{
@@ -50,6 +52,6 @@ export function ExamplePage() {
           },
         }}
       />
-    </div>
+    </Loader>
   );
 }
