@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "website",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple React package development project example template.",
   "private": true,
   "scripts": {
@@ -14,18 +14,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@uiw/react-github-corners": "~1.5.3",
-    "@uiw/react-markdown-preview": "~4.0.7",
-    "@uiw/react-layout": "~5.0.0-beta.1",
-    "@uiw/react-stackblitz": "~1.0.5",
-    "@uiw/react-codesandbox": "~1.1.5",
-    "@uiw/react-codepen": "~1.0.2",
     "@uiw/copy-to-clipboard": "^1.0.12",
+    "@uiw/react-codepen": "~1.0.2",
+    "@uiw/react-codesandbox": "~1.1.5",
+    "@uiw/react-github-corners": "~1.5.3",
+    "@uiw/react-layout": "~5.0.0-beta.1",
+    "@uiw/react-markdown-preview": "~4.0.7",
+    "@uiw/react-stackblitz": "~1.0.5",
     "@wcj/dark-mode": "^1.0.14",
-    "react-i18next": "~11.16.9",
     "i18next": "~21.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-i18next": "~11.16.9",
     "react-router-dom": "^6.3.0",
     "uiw": "^4.21.7"
   },
@@ -36,7 +36,7 @@
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
     "kkt": "~7.1.5",
-    "markdown-react-code-preview-loader": "1.0.0"
+    "markdown-react-code-preview-loader": "1.0.1"
   },
   "eslintConfig": {
     "extends": [
