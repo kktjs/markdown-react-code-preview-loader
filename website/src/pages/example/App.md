@@ -11,7 +11,7 @@ import { Alert } from "uiw";
 // or
 import Alert from "@uiw/react-alert";
 ```
-`import React from 'react'`
+
 ## Basic Usage
 
 ```jsx mdx:preview

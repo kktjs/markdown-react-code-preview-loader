@@ -17,10 +17,19 @@ export interface CodeProps {
   codeSandboxOptions?: CodeSandboxProps;
   /** stackBlitz参数 **/
   stackBlitzOptions?: StackBlitzProps;
+  /* 自定义操作按钮 **/
+  customButton?: React.ReactNode;
+  /** 展示代码块内边距 **/
+  codePadding?: number;
 }
 
 export interface PreviewProps extends CodeProps {
   previewBodyClassName?: string;
   className?: string;
   children?: React.ReactNode;
+  prefixCls?: string;
+  /** 只显示效果 **/
+  noCode?: boolean;
+  /** 是否需要边框 */
+  bordered?: boolean;
 }
