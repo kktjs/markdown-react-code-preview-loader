@@ -12,6 +12,7 @@ export type CodeBlockData = {
 export default function (source: string) {
   const options = this.getOptions();
   const result = getCodeBlockString(source, options.lang || ['tsx', 'jsx']);
+
   return `
     ${result}
     export default {

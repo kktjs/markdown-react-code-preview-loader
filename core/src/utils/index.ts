@@ -9,16 +9,24 @@ import remark from 'remark';
 
 /** 转换 代码*/
 const getProcessor = (scope: string) => {
-  const child = remark.parse(scope) as MarkDownTreeType;
-  return child.children;
+  try {
+    const child = remark.parse(scope) as MarkDownTreeType;
+    return child.children;
+  } catch (err) {
+    console.warn(err);
+  }
 };
 
 const getMeta = (meta: string | null): Record<string, string | boolean> => {
   let metaData: Record<string, string | boolean> = {};
-  if (meta) {
-    const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
-    const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
-    metaData[field] = val || true;
+  try {
+    if (meta) {
+      const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
+      const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
+      metaData[field] = val || true;
+    }
+  } catch (err) {
+    console.warn(err);
   }
   return metaData;
 };
@@ -27,23 +35,27 @@ const getMeta = (meta: string | null): Record<string, string | boolean> => {
 const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['jsx', 'tsx']) => {
   // 获取渲染部分
   const codeBlock: Record<string | number, CodeBlockItemType> = {};
-  child.forEach((item) => {
-    if (item && item.type === 'code' && lang.includes(item.lang)) {
-      const line = item.position.start.line;
-      const metaData = getMeta(item.meta);
-      if (metaData.preview) {
-        let name = typeof metaData.preview === 'string' ? metaData.preview : line;
-        const funName = `BaseCode${line}`;
-        const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName);
-        codeBlock[line] = {
-          code: returnCode,
-          name,
-          language: item.lang,
-          value: item.value,
-        };
+  try {
+    child.forEach((item) => {
+      if (item && item.type === 'code' && lang.includes(item.lang)) {
+        const line = item.position.start.line;
+        const metaData = getMeta(item.meta);
+        if (metaData.preview) {
+          let name = typeof metaData.preview === 'string' ? metaData.preview : line;
+          const funName = `BaseCode${line}`;
+          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName);
+          codeBlock[line] = {
+            code: returnCode,
+            name,
+            language: item.lang,
+            value: item.value,
+          };
+        }
       }
-    }
-  });
+    });
+  } catch (err) {
+    console.warn(err);
+  }
   return codeBlock;
 };
 
@@ -52,13 +64,19 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
   let baseCodeObjStr = ``;
   let codeBlockValue = ``;
   let languageStr = ``;
-  Object.entries(codeBlock).forEach(([key, item]) => {
-    const { code, value, language, name } = item;
-    baseCodeStr += `${code};\n`;
-    baseCodeObjStr += `${name}:BaseCode${key},\n`;
-    codeBlockValue += `${name}:${JSON.stringify(value)},\n`;
-    languageStr += `${name}:\`${language}\`,\n`;
-  });
+
+  try {
+    Object.entries(codeBlock).forEach(([key, item]) => {
+      const { code, value, language, name } = item;
+      baseCodeStr += `${code};\n`;
+      baseCodeObjStr += `${name}:BaseCode${key},\n`;
+      codeBlockValue += `${name}:${JSON.stringify(value)},\n`;
+      languageStr += `${name}:\`${language}\`,\n`;
+    });
+  } catch (err) {
+    console.warn(err);
+  }
+
   let indexStr = `${baseCodeStr} const languages={${languageStr}};\n const codeBlock={${codeBlockValue}};\n const components={${baseCodeObjStr}}`;
   return indexStr;
 };
