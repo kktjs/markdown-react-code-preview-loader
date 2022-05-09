@@ -60,7 +60,7 @@ class Demo extends React.Component {
         </Alert>
         <ButtonGroup>
           <Button onClick={this.onClick.bind(this, "visible1")}>
-            单个按钮确认对话框
+            {`单个按钮确认对话框`}
           </Button>
           <Button onClick={this.onClick.bind(this, "visible2")}>
             确认对话框

@@ -56,7 +56,7 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
     const { code, value, language, name } = item;
     baseCodeStr += `${code};\n`;
     baseCodeObjStr += `${name}:BaseCode${key},\n`;
-    codeBlockValue += `${name}:\`${value}\`,\n`;
+    codeBlockValue += `${name}:${JSON.stringify(value)},\n`;
     languageStr += `${name}:\`${language}\`,\n`;
   });
   let indexStr = `${baseCodeStr} const languages={${languageStr}};\n const codeBlock={${codeBlockValue}};\n const components={${baseCodeObjStr}}`;
