@@ -35,6 +35,19 @@ export default (conf: WebpackConfiguration, env: 'development' | 'production', o
 };
 ```
 
+```ts
+import webpack from 'webpack';
+import { Options } from 'markdown-react-code-preview-loader';
+/**
+ * 用于修改 webpack 配置 loader 的方法
+ * @param {webpack.Configuration} config webpack 配置
+ * @param {string[]} lang 解析语言
+ * @param {Options} option Loader Options
+ * @returns {webpack.Configuration}
+ * **/
+export declare const mdCodeModulesLoader: (config: webpack.Configuration, lang?: string[], option?: Options) => webpack.Configuration;
+```
+
 **第 ② 种方法，手动添加配置**
 
 在 Webpack 中配置使用方法是一致的。

@@ -91,12 +91,17 @@ export const getCodeBlockString = (scope: string, opts: Options = {}) => {
 };
 
 /**
- * 用于修改 webpack 配置 loader 的方法
- * @param {webpack.Configuration} config webpack配置
- * @param {string[]} lang 解析语言
+ * `mdCodeModulesLoader` method for adding `markdown-react-code-preview-loader` to webpack config.
+ * @param {webpack.Configuration} config webpack config
+ * @param {string[]} lang Parsing language
+ * @param {Options} option Loader Options
  * @returns {webpack.Configuration}
- * **/
-export const mdCodeModulesLoader = (config: webpack.Configuration, lang?: string[]): webpack.Configuration => {
+ */
+export const mdCodeModulesLoader = (
+  config: webpack.Configuration,
+  lang?: string[],
+  option: Options = {},
+): webpack.Configuration => {
   config.module.rules.forEach((ruleItem) => {
     if (typeof ruleItem === 'object') {
       if (ruleItem.oneOf) {
@@ -105,7 +110,7 @@ export const mdCodeModulesLoader = (config: webpack.Configuration, lang?: string
           use: [
             {
               loader: 'markdown-react-code-preview-loader',
-              options: { lang },
+              options: { lang, ...option },
             },
           ],
         });

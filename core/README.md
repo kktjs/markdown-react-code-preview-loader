@@ -35,6 +35,19 @@ export default (conf: WebpackConfiguration, env: 'development' | 'production', o
 };
 ```
 
+```ts
+import webpack from 'webpack';
+import { Options } from 'markdown-react-code-preview-loader';
+/**
+ * `mdCodeModulesLoader` method for adding `markdown-react-code-preview-loader` to webpack config.
+ * @param {webpack.Configuration} config webpack config
+ * @param {string[]} lang Parsing language
+ * @param {Options} option Loader Options
+ * @returns {webpack.Configuration}
+ * **/
+export declare const mdCodeModulesLoader: (config: webpack.Configuration, lang?: string[], option?: Options) => webpack.Configuration;
+```
+
 **② The second method is to manually add the configuration**
 
 The configuration and usage methods are consistent in Webpack.
