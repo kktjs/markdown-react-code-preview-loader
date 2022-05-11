@@ -3,14 +3,11 @@
   "private": true,
   "scripts": {
     "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
-    "build": "npm run build:loader",
-    "build:loader": "lerna exec --scope markdown-react-code-preview-loader -- npm run build",
-    "watch:loader": "lerna exec --scope markdown-react-code-preview-loader -- npm run watch",
+    "watch": "npm run-script watch --workspace markdown-react-code-preview-loader",
+    "build": "npm run-script build --workspace markdown-react-code-preview-loader",
+    "doc": "npm run-script build --workspace website",
+    "start": "npm run-script start --workspace website",
     "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
-    "start": "lerna exec --scope website -- npm run start",
-    "doc": "lerna exec --scope website -- npm run build",
-    "bootstrap": "lerna bootstrap",
-    "hoist": "lerna bootstrap --hoist",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage --bail",
     "prepare": "husky install",
@@ -24,6 +21,10 @@
       "prettier --write"
     ]
   },
+  "workspaces": [
+    "core",
+    "website"
+  ],
   "jest": {
     "collectCoverageFrom": [
       "<rootDir>/core/src/**/*.{js,jsx,ts,tsx}"
