@@ -184,9 +184,9 @@ export default Demo
 
 ```bash
 npm install   # Install dependencies
-npm run hoist # Install sub packages dependencies
+npm install --workspaces # Install sub packages dependencies
 
-npm run watch:loader
+npm run watch
 npm run start
 ```
 
