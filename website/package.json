@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "website",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Simple React package development project example template.",
   "private": true,
   "scripts": {
@@ -36,7 +36,7 @@
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
     "kkt": "~7.1.5",
-    "markdown-react-code-preview-loader": "1.0.1"
+    "markdown-react-code-preview-loader": "1.1.0"
   },
   "eslintConfig": {
     "extends": [
