@@ -84,7 +84,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ```ts
 import { PluginItem } from '@babel/core';
-import { Options as RIOptions } from 'babel-plugin-transform-remove-imports'
+import { Options as RemoveImportsOptions } from 'babel-plugin-transform-remove-imports'
 export type Options = {
   /**
    * 需要解析代码块的语言，默认: `["jsx","tsx"]`
@@ -95,7 +95,7 @@ export type Options = {
    * babel (babel-plugin-transform-remove-imports) 包的 option 设置
    * https://github.com/uiwjs/babel-plugin-transform-remove-imports
    */
-  removeImports?: RIOptions;
+  removeImports?: RemoveImportsOptions;
   /**
    * 添加 babel 插件。
    */
@@ -110,30 +110,54 @@ export type Options = {
 ```jsx
 import mdObj from 'markdown-react-code-preview-loader/README.md';
 
-mdObj.source       // => `README.md` 原始字符串文本
-mdObj.components   // => 组件索引对象，从 markdown 索引到的示例转换成的 React 组件。(需要配置 meta)
-mdObj.codeBlock    // => 组件源码索引对象，从 markdown 索引到的示例源码。(需要配置 meta)
+mdObj.source     // => `README.md` 原始字符串文本
+mdObj.components // => 组件索引对象，从 markdown 索引到的示例转换成的 React 组件。(可能需要配置 meta)
+mdObj.data       // => 组件源码索引对象，从 markdown 索引到的示例源码。(可能需要配置 meta)
 ```
 
 ```js
 {
-  codeBlock: {
-    17: 'import React from ...',
-    77: 'import React from ...',
-    demo12: 'import React from ...'
+  data: {
+    17: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    },
+    77: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    },
+    demo12: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    }
   },
   components: { 17: ƒ, 77: ƒ, demo12: ƒ },
-  languages: { 17: 'jsx', 77: 'jsx', demo12: 'jsx'},
   source: "# Alert 确认对话框...."
 }
 ```
 
 ```ts
+export type CodeBlockItem = {
+  /** 源码转换后的代码。 **/
+  code?: string;
+  /** 原始代码块 **/
+  value?: string;
+  /** 代码块编程语言 **/
+  language?: string;
+  /** 索引名称可以自定义，可以是行号。 */
+  name?: string | number;
+};
+
 export type CodeBlockData = {
   source: string;
-  components: Record<string | number, React.FC>;
-  codeBlock: Record<string | number, string>;
-  languages: Record<string | number, string>;
+  components: Record<CodeBlockItem['name'], React.FC>;
+  data: Record<CodeBlockItem['name'], CodeBlockItem>;
 };
 ```
 
@@ -156,9 +180,11 @@ getMetaId('mdx:preview')        // => ''
 getMetaId('mdx:preview:demo12') // => 'demo12'
 ```
 
-## getCodeBlockString 
+## getCodeBlock 
 
-传递 `markdown` 文件内容字符串，返回转换好的需要预览的代码块解析数据。
+```ts
+const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => CodeBlockData['data'];
+```
 
 ## 配置 meta 标识
 

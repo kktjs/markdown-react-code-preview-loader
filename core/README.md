@@ -84,7 +84,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ```ts
 import { PluginItem } from '@babel/core';
-import { Options as RIOptions } from 'babel-plugin-transform-remove-imports'
+import { Options as RemoveImportsOptions } from 'babel-plugin-transform-remove-imports'
 export type Options = {
   /**
    * Language to parse code blocks, default: `["jsx","tsx"]`
@@ -94,7 +94,7 @@ export type Options = {
    * Option settings for the babel (babel-plugin-transform-remove-imports) package
    * https://github.com/uiwjs/babel-plugin-transform-remove-imports
    */
-  removeImports?: RIOptions;
+  removeImports?: RemoveImportsOptions;
   /**
    * Add babel plugins.
    */
@@ -109,30 +109,54 @@ After adding `loader`, use the method to load `markdown` text in the project pro
 ```jsx
 import mdObj from 'markdown-react-code-preview-loader/README.md';
 
-mdObj.source       // => `README.md` raw string text
-mdObj.components   // => The component index object, the React component converted from the markdown indexed example. (need to configure meta)
-mdObj.codeBlock    // => The component source code index object, the sample source code indexed from markdown. (need to configure meta)
+mdObj.source     // => `README.md` raw string text
+mdObj.components // => The component index object, the React component converted from the markdown indexed example. (need to configure meta)
+mdObj.data       // => The component source code index object, the sample source code indexed from markdown. (need to configure meta)
 ```
 
 ```js
 {
-  codeBlock: {
-    17: 'import React from ...',
-    77: 'import React from ...',
-    demo12: 'import React from ...'
+  data: {
+    17: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    },
+    77: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    },
+    demo12: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 17,
+      value: "impo....."
+    }
   },
   components: { 17: ƒ, 77: ƒ, demo12: ƒ },
-  languages: { 17: 'jsx', 77: 'jsx', demo12: 'jsx'},
   source: "# Alert 确认对话框...."
 }
 ```
 
 ```ts
+export type CodeBlockItem = {
+  /** The code after the source code conversion. **/
+  code?: string;
+  /** original code block **/
+  value?: string;
+  /** code block programming language **/
+  language?: string;
+  /** The index name, which can be customized, can be a row number. */
+  name?: string | number;
+};
+
 export type CodeBlockData = {
   source: string;
-  components: Record<string | number, React.FC>;
-  codeBlock: Record<string | number, string>;
-  languages: Record<string | number, string>;
+  components: Record<CodeBlockItem['name'], React.FC>;
+  data: Record<CodeBlockItem['name'], CodeBlockItem>;
 };
 ```
 
@@ -155,9 +179,11 @@ getMetaId('mdx:preview')        // => ''
 getMetaId('mdx:preview:demo12') // => 'demo12'
 ```
 
-## getCodeBlockString 
+## getCodeBlock 
 
-Pass the `markdown` file content string, and return the converted code block parsing data that needs to be previewed.
+```ts
+const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => CodeBlockData['data'];
+```
 
 ## Configure meta ID
 

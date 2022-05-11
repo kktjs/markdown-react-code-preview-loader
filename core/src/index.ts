@@ -1,15 +1,27 @@
 import React from 'react';
 import { PluginItem } from '@babel/core';
 import { Options as RIOptions } from 'babel-plugin-transform-remove-imports';
-import { getCodeBlockString } from './utils';
+import { getProcessor, getCodeBlock } from './utils';
 export * from './utils';
+
+export type CodeBlockItem = {
+  /** The code after the source code conversion. **/
+  code?: string;
+  /** original code block **/
+  value?: string;
+  /** code block programming language **/
+  language?: string;
+  /** The index name, which can be customized, can be a row number. */
+  name?: string | number;
+};
 
 export type CodeBlockData = {
   source: string;
-  components: Record<string | number, React.FC>;
-  codeBlock: Record<string | number, string>;
-  languages: Record<string | number, string>;
+  components: Record<CodeBlockItem['name'], React.FC>;
+  data: Record<CodeBlockItem['name'], CodeBlockItem>;
 };
+
+export const FUNNAME_PREFIX = '__BaseCode__';
 
 export type Options = {
   /**
@@ -29,15 +41,16 @@ export type Options = {
 
 export default function (source: string) {
   const options: Options = this.getOptions();
-  const result = getCodeBlockString(source, options);
 
-  return `
-    ${result}
-    export default {
-      source:${JSON.stringify(source)},
-      components,
-      codeBlock,
-      languages
-    }
-`;
+  const codeBlock = getCodeBlock(getProcessor(source), options);
+  let components = '';
+  Object.keys(codeBlock).forEach((key) => {
+    components += `${key}: (function() { ${codeBlock[key].code} })(),`;
+  });
+
+  return `\nexport default {
+    components: { ${components} },
+    data: ${JSON.stringify(codeBlock, null, 2)},
+    source: ${JSON.stringify(source)}
+  }`;
 }

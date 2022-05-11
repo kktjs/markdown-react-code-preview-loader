@@ -7,8 +7,7 @@ const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, 
   const [mdData, setMdData] = useState<CodeBlockData>({
     source: '',
     components: {},
-    codeBlock: {},
-    languages: {},
+    data: {},
   });
   const lang = init.t(name);
 
@@ -18,6 +17,7 @@ const useMdData = (path: (lang: string) => Promise<{ default: CodeBlockData }>, 
     const getMd = async () => {
       try {
         const result = await path(lang);
+        console.log('result:', result.default);
         if (result.default) {
           setMdData(result.default);
         }

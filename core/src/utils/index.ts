@@ -1,17 +1,21 @@
-/*
- * @Description: markdown 转化
- */
-import { MarkDownTreeType, CodeBlockItemType } from './interface';
+import { Parent, Node } from 'unist';
 import { getTransformValue } from './transform';
 import webpack from 'webpack';
 import remark from 'remark';
-export * from './interface';
-import { Options } from '../';
+import { Options, FUNNAME_PREFIX, CodeBlockItem, CodeBlockData } from '../';
+
+export interface MarkdownDataChild extends Node {
+  lang: string;
+  meta: string;
+  value: string;
+}
+
+export interface MarkdownParseData extends Parent<MarkdownDataChild> {}
 
 /** 转换 代码*/
-const getProcessor = (scope: string) => {
+export const getProcessor = (source: string) => {
   try {
-    const child = remark.parse(scope) as MarkDownTreeType;
+    const child = remark.parse(source) as MarkdownParseData;
     return child.children;
   } catch (err) {
     console.warn(err);
@@ -43,22 +47,22 @@ export const getMetaId = (meta: string = '') => {
 export const isMeta = (meta: string = '') => meta && meta.includes('mdx:preview');
 
 /** 获取需要渲染的代码块 **/
-const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) => {
+export const getCodeBlock = (child: MarkdownParseData['children'], opts: Options = {}): CodeBlockData['data'] => {
   const { lang = ['jsx', 'tsx'] } = opts;
   // 获取渲染部分
-  const codeBlock: Record<string | number, CodeBlockItemType> = {};
+  const codeBlock: Record<string | number, CodeBlockItem> = {};
   try {
     child.forEach((item) => {
       if (item && item.type === 'code' && lang.includes(item.lang)) {
         const line = item.position.start.line;
         const metaId = getMetaId(item.meta);
         if (isMeta(item.meta)) {
-          let name = typeof metaId === 'string' ? metaId : line;
-          const funName = `BaseCode${line}`;
-          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName, opts);
-          codeBlock[line] = {
-            code: returnCode,
+          let name = metaId || line;
+          const funName = `${FUNNAME_PREFIX}${name}`;
+          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, opts);
+          codeBlock[name] = {
             name,
+            code: returnCode,
             language: item.lang,
             value: item.value,
           };
@@ -69,35 +73,6 @@ const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) =
     console.warn(err);
   }
   return codeBlock;
-};
-
-const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
-  let baseCodeStr = ``;
-  let baseCodeObjStr = ``;
-  let codeBlockValue = ``;
-  let languageStr = ``;
-
-  try {
-    Object.entries(codeBlock).forEach(([key, item]) => {
-      const { code, value, language, name } = item;
-      baseCodeStr += `${code};\n`;
-      baseCodeObjStr += `${name}:BaseCode${key},\n`;
-      codeBlockValue += `${name}:${JSON.stringify(value)},\n`;
-      languageStr += `${name}:\`${language}\`,\n`;
-    });
-  } catch (err) {
-    console.warn(err);
-  }
-
-  let indexStr = `${baseCodeStr} const languages={${languageStr}};\n const codeBlock={${codeBlockValue}};\n const components={${baseCodeObjStr}}`;
-  return indexStr;
-};
-
-export const getCodeBlockString = (scope: string, opts: Options = {}) => {
-  const children = getProcessor(scope);
-  const codeBlock = getCodeBlock(children, opts);
-  const result = createStr(codeBlock);
-  return result;
 };
 
 /**
