@@ -136,6 +136,16 @@ export type CodeBlockData = {
 };
 ```
 
+## isMeta
+
+```js
+import { isMeta } from 'markdown-react-code-preview-loader';
+
+isMeta('mdx:preview')         // => true
+isMeta('mdx:preview:demo12')  // => true
+isMeta('mdx:preview--demo12') // => false
+```
+
 ## getMetaId
 
 ```js

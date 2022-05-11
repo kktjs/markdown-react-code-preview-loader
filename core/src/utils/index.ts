@@ -31,6 +31,17 @@ export const getMetaId = (meta: string = '') => {
   return metaRaw.replace(/^mdx:preview:?/, '');
 };
 
+/**
+ * ```js
+ * isMeta('mdx:preview') => true
+ * isMeta('mdx:preview:demo12') => true
+ * isMeta('mdx:preview--demo12') => false
+ * ```
+ * @param meta
+ * @returns boolean
+ */
+export const isMeta = (meta: string = '') => meta && meta.includes('mdx:preview');
+
 /** 获取需要渲染的代码块 **/
 const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) => {
   const { lang = ['jsx', 'tsx'] } = opts;
@@ -41,7 +52,7 @@ const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) =
       if (item && item.type === 'code' && lang.includes(item.lang)) {
         const line = item.position.start.line;
         const metaId = getMetaId(item.meta);
-        if (metaId) {
+        if (isMeta(item.meta)) {
           let name = typeof metaId === 'string' ? metaId : line;
           const funName = `BaseCode${line}`;
           const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName, opts);
