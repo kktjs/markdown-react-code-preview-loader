@@ -18,18 +18,17 @@ const getProcessor = (scope: string) => {
   }
 };
 
-const getMeta = (meta: string | null): Record<string, string | boolean> => {
-  let metaData: Record<string, string | boolean> = {};
-  try {
-    if (meta) {
-      const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
-      const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
-      metaData[field] = val || true;
-    }
-  } catch (err) {
-    console.warn(err);
-  }
-  return metaData;
+/**
+ * ```js
+ * 'mdx:preview' => ''  // Empty
+ * 'mdx:preview:demo12' => 'demo12' // return meta id => 'demo12'
+ * ```
+ * @param meta string
+ * @returns string?
+ */
+export const getMetaId = (meta: string = '') => {
+  const [metaRaw = ''] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
+  return metaRaw.replace(/^mdx:preview:?/, '');
 };
 
 /** 获取需要渲染的代码块 **/
@@ -41,9 +40,9 @@ const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) =
     child.forEach((item) => {
       if (item && item.type === 'code' && lang.includes(item.lang)) {
         const line = item.position.start.line;
-        const metaData = getMeta(item.meta);
-        if (metaData.preview) {
-          let name = typeof metaData.preview === 'string' ? metaData.preview : line;
+        const metaId = getMetaId(item.meta);
+        if (metaId) {
+          let name = typeof metaId === 'string' ? metaId : line;
           const funName = `BaseCode${line}`;
           const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName, opts);
           codeBlock[line] = {

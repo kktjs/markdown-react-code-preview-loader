@@ -137,6 +137,15 @@ export type CodeBlockData = {
 };
 ```
 
+## getMetaId
+
+```js
+import { getMetaId } from 'markdown-react-code-preview-loader';
+
+getMetaId('mdx:preview')        // => ''
+getMetaId('mdx:preview:demo12') // => 'demo12'
+```
+
 ## getCodeBlockString 
 
 传递 `markdown` 文件内容字符串，返回转换好的需要预览的代码块解析数据。

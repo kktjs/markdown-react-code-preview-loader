@@ -136,6 +136,15 @@ export type CodeBlockData = {
 };
 ```
 
+## getMetaId
+
+```js
+import { getMetaId } from 'markdown-react-code-preview-loader';
+
+getMetaId('mdx:preview')        // => ''
+getMetaId('mdx:preview:demo12') // => 'demo12'
+```
+
 ## getCodeBlockString 
 
 Pass the `markdown` file content string, and return the converted code block parsing data that needs to be previewed.
