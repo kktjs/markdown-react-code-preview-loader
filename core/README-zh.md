@@ -19,6 +19,8 @@ npm i markdown-react-code-preview-loader -D
 
 **第 ① 种方法，使用 mdCodeModulesLoader 方法**
 
+`mdCodeModulesLoader` 用于在 webpack 配置添加 `markdown-react-code-preview-loader` 的方法。
+
 ```ts
 // .kktrc.ts
 import scopePluginOptions from '@kkt/scope-plugin-options';
@@ -67,7 +69,26 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ### options 参数
 
-- lang: 需要解析代码块的语言，默认: `["jsx","tsx"]`
+```ts
+import { PluginItem } from '@babel/core';
+import { Options as RIOptions } from 'babel-plugin-transform-remove-imports'
+export type Options = {
+  /**
+   * 需要解析代码块的语言，默认: `["jsx","tsx"]`
+   */
+  lang?: string[];
+  /**
+   * 删除过滤 imports 包；
+   * babel (babel-plugin-transform-remove-imports) 包的 option 设置
+   * https://github.com/uiwjs/babel-plugin-transform-remove-imports
+   */
+  removeImports?: RIOptions;
+  /**
+   * 添加 babel 插件。
+   */
+  babelPlugins?: PluginItem[];
+}
+```
 
 ## 项目中使用
 

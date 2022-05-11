@@ -19,6 +19,8 @@ After installing the dependency (loader), we need to configure the `loader` into
 
 **① The first method, use the mdCodeModulesLoader method**
 
+`mdCodeModulesLoader` method for adding `markdown-react-code-preview-loader` to webpack config.
+
 ```ts
 // .kktrc.ts
 import scopePluginOptions from '@kkt/scope-plugin-options';
@@ -67,7 +69,25 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 
 ### options parameter
 
-- lang: Language to parse code blocks, default: `["jsx","tsx"]`
+```ts
+import { PluginItem } from '@babel/core';
+import { Options as RIOptions } from 'babel-plugin-transform-remove-imports'
+export type Options = {
+  /**
+   * Language to parse code blocks, default: `["jsx","tsx"]`
+   */
+  lang?: string[];
+  /**
+   * Option settings for the babel (babel-plugin-transform-remove-imports) package
+   * https://github.com/uiwjs/babel-plugin-transform-remove-imports
+   */
+  removeImports?: RIOptions;
+  /**
+   * Add babel plugins.
+   */
+  babelPlugins?: PluginItem[];
+}
+```
 
 ## Used in the project
 

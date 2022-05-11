@@ -4,8 +4,9 @@
 import { MarkDownTreeType, CodeBlockItemType } from './interface';
 import { getTransformValue } from './transform';
 import webpack from 'webpack';
-export * from './interface';
 import remark from 'remark';
+export * from './interface';
+import { Options } from '../';
 
 /** 转换 代码*/
 const getProcessor = (scope: string) => {
@@ -32,7 +33,8 @@ const getMeta = (meta: string | null): Record<string, string | boolean> => {
 };
 
 /** 获取需要渲染的代码块 **/
-const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['jsx', 'tsx']) => {
+const getCodeBlock = (child: MarkDownTreeType['children'], opts: Options = {}) => {
+  const { lang = ['jsx', 'tsx'] } = opts;
   // 获取渲染部分
   const codeBlock: Record<string | number, CodeBlockItemType> = {};
   try {
@@ -43,7 +45,7 @@ const getCodeBlock = (child: MarkDownTreeType['children'], lang: string[] = ['js
         if (metaData.preview) {
           let name = typeof metaData.preview === 'string' ? metaData.preview : line;
           const funName = `BaseCode${line}`;
-          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName);
+          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, funName, opts);
           codeBlock[line] = {
             code: returnCode,
             name,
@@ -81,15 +83,15 @@ const createStr = (codeBlock: Record<string | number, CodeBlockItemType>) => {
   return indexStr;
 };
 
-export const getCodeBlockString = (scope: string, lang: string[] = ['jsx', 'tsx']) => {
+export const getCodeBlockString = (scope: string, opts: Options = {}) => {
   const children = getProcessor(scope);
-  const codeBlock = getCodeBlock(children, lang);
+  const codeBlock = getCodeBlock(children, opts);
   const result = createStr(codeBlock);
   return result;
 };
 
 /**
- * 配置好markdown的loader
+ * 用于修改 webpack 配置 loader 的方法
  * @param {webpack.Configuration} config webpack配置
  * @param {string[]} lang 解析语言
  * @returns {webpack.Configuration}

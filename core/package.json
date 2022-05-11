@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.17.11",
+    "babel-plugin-transform-remove-imports": "^1.7.0",
     "remark": "~13.0.0"
   },
   "devDependencies": {
