@@ -1,11 +1,12 @@
 import { transform } from '@babel/standalone';
 import { PluginItem } from '@babel/core';
+import removeImports from 'babel-plugin-transform-remove-imports';
 import { Options } from '../';
 
 export function babelTransform(input: string, filename: string, opts: Options = {}) {
   const plugins: PluginItem[] = [...(opts.babelPlugins || [])];
   if (opts.removeImports) {
-    plugins.push(['babel-plugin-transform-remove-imports', opts.removeImports]);
+    plugins.push([removeImports, opts.removeImports]);
   }
   return transform(input, {
     filename,
