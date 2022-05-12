@@ -229,7 +229,7 @@ export default Demo
 ```
     Meta Tag         Meta ID   Meta Param
     ┈┈┈┈┈┈┈┈         ┈┈┈┈┈┈┈   ┈┈┈┈┈┈┈┈┈┈
-╭┈┈┈┈┈┈┈┈╲‥‥‥‥‥‥‥‥‥‥‥‥‥‥╱‥‥‥‥‥‥‥╱‥‥‥‥┈┈┈┈╮
+╭┈┈┈┈┈┈┈┈━╲━━━━━━━━━━━━╱━━━━━━━╱━━━━━┈┈┈┈╮
 ┆ ```jsx mdx:preview:demo12&boreder=0    ┆
 ┆ import React from "react"              ┆
 ┆ const Demo = () => <div>Test</div>     ┆

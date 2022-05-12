@@ -228,7 +228,7 @@ Note ⚠️: You need to add a special `meta` identifier to the code block examp
 ```
     Meta Tag         Meta ID   Meta Param
     ┈┈┈┈┈┈┈┈         ┈┈┈┈┈┈┈   ┈┈┈┈┈┈┈┈┈┈
-╭┈┈┈┈┈┈┈┈╲‥‥‥‥‥‥‥‥‥‥‥‥‥‥╱‥‥‥‥‥‥‥╱‥‥‥‥┈┈┈┈╮
+╭┈┈┈┈┈┈┈┈━╲━━━━━━━━━━━━╱━━━━━━━╱━━━━━┈┈┈┈╮
 ┆ ```jsx mdx:preview:demo12&boreder=0    ┆
 ┆ import React from "react"              ┆
 ┆ const Demo = () => <div>Test</div>     ┆
