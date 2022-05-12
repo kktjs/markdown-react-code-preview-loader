@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "markdown-react-code-preview-loader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Index react example text in markdown, converted to React components.",
   "author": "SunLxy <1011771396@qq.com>",
   "contributors": [
@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.17.11",
-    "babel-plugin-transform-replace-export-default": "^1.0.3",
     "babel-plugin-transform-remove-imports": "^1.7.0",
+    "babel-plugin-transform-replace-export-default": "^1.0.3",
     "remark": "~13.0.0"
   },
   "devDependencies": {
