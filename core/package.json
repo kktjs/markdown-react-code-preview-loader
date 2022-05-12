@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "markdown-react-code-preview-loader",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Index react example text in markdown, converted to React components.",
   "homepage": "https://kktjs.github.io/markdown-react-code-preview-loader",
   "author": "SunLxy <1011771396@qq.com>",
