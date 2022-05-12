@@ -1,26 +1,8 @@
 import { transform } from '@babel/standalone';
-import { PluginItem, PluginObj } from '@babel/core';
+import { PluginItem } from '@babel/core';
 import removeImports from 'babel-plugin-transform-remove-imports';
+import replaceExportDefault from 'babel-plugin-transform-replace-export-default';
 import { Options } from '../';
-
-export function defaultExportReplace(): PluginObj {
-  return {
-    name: 'transform-replace-export-default-to-return',
-    visitor: {
-      ExportDefaultDeclaration(path, opts) {
-        const declaration = path.node.declaration;
-        if (declaration.type === 'ClassDeclaration' || declaration.type === 'FunctionDeclaration') {
-          declaration.id.name = `return ${declaration.id.name}`;
-        } else if (declaration.type === 'Identifier') {
-          declaration.name = `return ${declaration.name}`;
-        }
-        if (declaration) {
-          path.replaceWith(declaration);
-        }
-      },
-    },
-  };
-}
 
 export const getTransformValue = (str: string, filename: string, opts: Options) => {
   try {
@@ -31,7 +13,7 @@ export const getTransformValue = (str: string, filename: string, opts: Options) 
     const result = transform(str, {
       filename,
       presets: ['env', 'es2015', 'react', 'typescript'],
-      plugins: [...plugins, defaultExportReplace],
+      plugins: [...plugins, replaceExportDefault],
     });
     return result.code;
   } catch (err) {
