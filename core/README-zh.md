@@ -226,6 +226,18 @@ export default Demo
 
 注意 ⚠️：需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
 
+```
+    Meta Tag         Meta ID   Meta Param
+    ┈┈┈┈┈┈┈┈         ┈┈┈┈┈┈┈   ┈┈┈┈┈┈┈┈┈┈
+╭┈┈┈┈┈┈┈┈╲‥‥‥‥‥‥‥‥‥‥‥‥‥‥╱‥‥‥‥‥‥‥╱‥‥‥‥┈┈┈┈╮
+┆ ```jsx mdx:preview:demo12&boreder=0    ┆
+┆ import React from "react"              ┆
+┆ const Demo = () => <div>Test</div>     ┆
+┆ export default Demo                    ┆
+┆ ```                                    ┆
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯
+```
+
 1. `mdx:` 特殊标识前缀
 2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
 3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。

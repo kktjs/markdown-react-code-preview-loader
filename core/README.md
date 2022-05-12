@@ -225,6 +225,18 @@ const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => Co
 
 Note ⚠️: You need to add a special `meta` identifier to the code block example, and `loader` will index the `react` example for code conversion.
 
+```
+    Meta Tag         Meta ID   Meta Param
+    ┈┈┈┈┈┈┈┈         ┈┈┈┈┈┈┈   ┈┈┈┈┈┈┈┈┈┈
+╭┈┈┈┈┈┈┈┈╲‥‥‥‥‥‥‥‥‥‥‥‥‥‥╱‥‥‥‥‥‥‥╱‥‥‥‥┈┈┈┈╮
+┆ ```jsx mdx:preview:demo12&boreder=0    ┆
+┆ import React from "react"              ┆
+┆ const Demo = () => <div>Test</div>     ┆
+┆ export default Demo                    ┆
+┆ ```                                    ┆
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯
+```
+
 1. `mdx:` special identifier prefix
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
 3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
