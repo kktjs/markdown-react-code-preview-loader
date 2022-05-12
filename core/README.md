@@ -117,26 +117,22 @@ mdObj.data       // => The component source code index object, the sample source
 ```js
 {
   data: {
-    17: {
-      code: "\"use strict\";\n\nfunction ......"
-      language: "jsx"
-      name: 17,
-      value: "impo....."
-    },
     77: {
       code: "\"use strict\";\n\nfunction ......"
       language: "jsx"
-      name: 17,
+      name: 77,
+      meta: {},
       value: "impo....."
     },
     demo12: {
       code: "\"use strict\";\n\nfunction ......"
       language: "jsx"
-      name: 17,
+      name: 'demo12',
+      meta: {},
       value: "impo....."
     }
   },
-  components: { 17: ƒ, 77: ƒ, demo12: ƒ },
+  components: { 77: ƒ, demo12: ƒ },
   source: "# Alert 确认对话框...."
 }
 ```
@@ -151,6 +147,8 @@ export type CodeBlockItem = {
   language?: string;
   /** The index name, which can be customized, can be a row number. */
   name?: string | number;
+  /** The `meta` parameter is converted into an `object`. */
+  meta?: Record<string, string>;
 };
 
 export type CodeBlockData = {
@@ -179,6 +177,44 @@ getMetaId('mdx:preview')        // => ''
 getMetaId('mdx:preview:demo12') // => 'demo12'
 ```
 
+## getURLParameters
+
+```js
+import { getURLParameters } from 'markdown-react-code-preview-loader';
+
+getURLParameters('name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
+getURLParameters('mdx:preview:demo12')       // => { }
+getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
+getURLParameters('mdx:preview:demo12&code=true&boreder=0')      // => { code: 'true', boreder: "0" }
+```
+
+```markdown
+\```tsx mdx:preview:demo12&code=true&boreder=0
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
+
+export default Demo
+\```
+```
+
+```js
+{
+  data: {
+    demo12: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 'demo12',
+      meta: { code: 'true', boreder: '0' },
+      value: "impo....."
+    }
+  },
+  components: { demo12: ƒ },
+  source: "# Alert 确认对话框...."
+}
+```
+
 ## getCodeBlock 
 
 ```ts
@@ -192,6 +228,7 @@ Note ⚠️: You need to add a special `meta` identifier to the code block examp
 1. `mdx:` special identifier prefix
 2. `mdx:preview` Controls whether to perform example indexing, and obtain the required example object through the corresponding line number.
 3. `mdx:preview:demo12` Uniquely identified by `demo12`, accurately obtain the `example code` or `example component object` of the index.
+4. `mdx:preview:&code=true&border=0` pass the parameters for the rendering layer to use.
 
 ```markdown
 \```tsx mdx:preview
@@ -206,6 +243,17 @@ export default Demo
 
 ```markdown
 \```tsx mdx:preview:demo12
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
+
+export default Demo
+\```
+```
+
+```markdown
+\```tsx mdx:preview:demo12&code=true&boreder=0
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>

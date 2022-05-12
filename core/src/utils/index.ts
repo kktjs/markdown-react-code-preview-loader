@@ -1,8 +1,24 @@
 import { Parent, Node } from 'unist';
-import { getTransformValue } from './transform';
 import webpack from 'webpack';
 import remark from 'remark';
+import { getTransformValue } from './transform';
 import { Options, FUNNAME_PREFIX, CodeBlockItem, CodeBlockData } from '../';
+
+/**
+ * Creates an object containing the parameters of the current URL.
+ *
+ * ```js
+ * getURLParameters('name=Adam&surname=Smith');
+ * // 👉 {name: 'Adam', surname: 'Smith'}
+ * ```
+ * @param url `name=Adam&surname=Smith`
+ * @returns
+ */
+export const getURLParameters = (url: string): Record<string, string> =>
+  (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
+    (a: Record<string, string>, v: string) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+    {},
+  );
 
 export interface MarkdownDataChild extends Node {
   lang: string;
@@ -62,6 +78,7 @@ export const getCodeBlock = (child: MarkdownParseData['children'], opts: Options
           const returnCode = getTransformValue(item.value, `${funName}.${lang}`, opts);
           codeBlock[name] = {
             name,
+            meta: getURLParameters(item.meta),
             code: returnCode,
             language: item.lang,
             value: item.value,

@@ -118,26 +118,22 @@ mdObj.data       // => 组件源码索引对象，从 markdown 索引到的示�
 ```js
 {
   data: {
-    17: {
-      code: "\"use strict\";\n\nfunction ......"
-      language: "jsx"
-      name: 17,
-      value: "impo....."
-    },
     77: {
       code: "\"use strict\";\n\nfunction ......"
       language: "jsx"
-      name: 17,
+      name: 77,
+      meta: {},
       value: "impo....."
     },
     demo12: {
       code: "\"use strict\";\n\nfunction ......"
       language: "jsx"
-      name: 17,
+      name: 'demo12',
+      meta: {},
       value: "impo....."
     }
   },
-  components: { 17: ƒ, 77: ƒ, demo12: ƒ },
+  components: { 77: ƒ, demo12: ƒ },
   source: "# Alert 确认对话框...."
 }
 ```
@@ -152,6 +148,8 @@ export type CodeBlockItem = {
   language?: string;
   /** 索引名称可以自定义，可以是行号。 */
   name?: string | number;
+  /** `meta` 参数被转换为 `object` */
+  meta?: Record<string, string>;
 };
 
 export type CodeBlockData = {
@@ -186,6 +184,44 @@ getMetaId('mdx:preview:demo12') // => 'demo12'
 const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => CodeBlockData['data'];
 ```
 
+## getURLParameters
+
+```js
+import { getURLParameters } from 'markdown-react-code-preview-loader';
+
+getURLParameters('name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
+getURLParameters('mdx:preview:demo12')       // => { }
+getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
+getURLParameters('mdx:preview:demo12&code=true&boreder=0')      // => { code: 'true', boreder: "0" }
+```
+
+```markdown
+\```tsx mdx:preview:demo12&code=true&boreder=0
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
+
+export default Demo
+\```
+```
+
+```js
+{
+  data: {
+    demo12: {
+      code: "\"use strict\";\n\nfunction ......"
+      language: "jsx"
+      name: 'demo12',
+      meta: { code: 'true', boreder: '0' },
+      value: "impo....."
+    }
+  },
+  components: { demo12: ƒ },
+  source: "# Alert 确认对话框...."
+}
+```
+
 ## 配置 meta 标识
 
 注意 ⚠️：需要在代码块示例中添加特殊的 `meta` 标识，`loader` 才会去索引对于的 `react` 示例，进行代码转换。
@@ -193,6 +229,7 @@ const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => Co
 1. `mdx:` 特殊标识前缀
 2. `mdx:preview` 控制是否进行进行示例索引，通过对应所在行号，获取需要的示例对象。
 3. `mdx:preview:demo12` 通过 `demo12` 唯一标识，准确获取索引的 `示例代码` 或 `示例组件对象`。
+4. `mdx:preview:&code=true&border=0` 传递参数，提供给渲染层使用。
 
 ```markdown
 \```tsx mdx:preview
@@ -207,6 +244,17 @@ export default Demo
 
 ```markdown
 \```tsx mdx:preview:demo12
+import React from "react"
+const Demo = ()=>{
+  return <div>测试</div>
+}
+
+export default Demo
+\```
+```
+
+```markdown
+\```tsx mdx:preview:demo12&code=true&boreder=0
 import React from "react"
 const Demo = ()=>{
   return <div>测试</div>

@@ -13,6 +13,8 @@ export type CodeBlockItem = {
   language?: string;
   /** The index name, which can be customized, can be a row number. */
   name?: string | number;
+  /** The `meta` parameter is converted into an `object`. */
+  meta?: Record<string, string>;
 };
 
 export type CodeBlockData = {

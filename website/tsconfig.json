@@ -2,6 +2,7 @@
   "extends": "../tsconfig",
   "include": [".kktrc.ts", "src"],
   "compilerOptions": {
+    "isolatedModules": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "noEmit": true

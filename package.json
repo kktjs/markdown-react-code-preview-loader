@@ -31,9 +31,6 @@
     ],
     "testMatch": [
       "<rootDir>/test/*.{ts,tsx}"
-    ],
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/?!(.*)"
     ]
   },
   "license": "MIT",
