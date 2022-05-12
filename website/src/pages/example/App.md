@@ -457,21 +457,3 @@ class Demo extends React.Component {
 }
 export default Demo;
 ```
-
-## Props
-
-Although similar to `<Modal>`, `<Alert>` is more restrictive and applies only to important information. This component inherits the properties of [`<Modal>`](#/components/modal), so some parameters can refer to the `<Modal>` component.
-| parameter       | explain       | type             | Default value  |
-| ------------------------------------------- | ----- | ---------------- | ------- |
-| onCancel                                    | Callback function of cancel button | Function(e)      | -       |
-| onConfirm                                   | Click OK to call back | Function(e)      | -       |
-| cancelText                                  | Cancel button text,    | String           | -       |
-| confirmText                                 | Confirm button text      | String           | `确认`  |
-| type                                        | The button type is consistent with the `type` parameter of the `<Button>` component and will affect the button color.| String           | `light` |
-| icon[`<Modal>`](#/components/modal)         | Set the icon in the upper right corner of the dialog box. Set `type` to set the icon to a different color. The current attribute is the `type` attribute of [`<Icon>`](#/components/icon) component, so you can refer to the custom icon of the component. | String/ReactNode | -       |
-| title[`<Modal>`](#/components/modal)        | Set title                                                 | Function(e)      | -       |
-| useButton[`<Modal>`](#/components/modal)    | Whether to use the default button. If you set `false`, you need to customize the button to close    | Boolean          | `true`  |
-| isOpen[`<Modal>`](#/components/modal)       | Whether the dialog box is visible      | Boolean          | `false` |
-| maskClosable[`<Modal>`](#/components/modal) | Click whether the mask layer is allowed to be turned off  | boolean          | `true`  |
-
-For more attribute documents, please refer to [Modal](#/components/modal)。
