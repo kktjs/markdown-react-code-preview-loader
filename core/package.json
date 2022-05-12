@@ -3,11 +3,16 @@
   "name": "markdown-react-code-preview-loader",
   "version": "2.0.1",
   "description": "Index react example text in markdown, converted to React components.",
+  "homepage": "https://kktjs.github.io/markdown-react-code-preview-loader",
   "author": "SunLxy <1011771396@qq.com>",
   "contributors": [
     "SunLxy <1011771396@qq.com>",
     "Kenny Wong <wowohoo@qq.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/react-monorepo-template.git"
+  },
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "esm/index.js",

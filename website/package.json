@@ -8,10 +8,6 @@
     "start": "kkt start",
     "build": "kkt build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uiwjs/react-monorepo-template.git"
-  },
   "license": "MIT",
   "dependencies": {
     "@uiw/copy-to-clipboard": "^1.0.12",
