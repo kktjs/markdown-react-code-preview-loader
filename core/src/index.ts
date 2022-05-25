@@ -2,6 +2,7 @@ import React from 'react';
 import { PluginItem } from '@babel/core';
 import { Options as RIOptions } from 'babel-plugin-transform-remove-imports';
 import { getProcessor, getCodeBlock } from './utils';
+import { LoaderDefinitionFunction } from 'webpack';
 export * from './utils';
 
 export type CodeBlockItem = {
@@ -41,18 +42,25 @@ export type Options = {
   babelPlugins?: PluginItem[];
 };
 
-export default function (source: string) {
+const codePreviewLoader: LoaderDefinitionFunction = function (source) {
   const options: Options = this.getOptions();
 
-  const codeBlock = getCodeBlock(getProcessor(source), options);
   let components = '';
-  Object.keys(codeBlock).forEach((key) => {
-    components += `${key}: (function() { ${codeBlock[key].code} })(),`;
-  });
+  let codeBlock = {} as CodeBlockData['data'];
+  try {
+    codeBlock = getCodeBlock(getProcessor(source), options, this.resourcePath);
+    Object.keys(codeBlock).forEach((key) => {
+      components += `${key}: (function() { ${codeBlock[key].code} })(),`;
+    });
+  } catch (error) {
+    this.emitError(error);
+  }
 
   return `\nexport default {
     components: { ${components} },
     data: ${JSON.stringify(codeBlock, null, 2)},
     source: ${JSON.stringify(source)}
   }`;
-}
+};
+
+export default codePreviewLoader;

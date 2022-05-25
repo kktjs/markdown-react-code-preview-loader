@@ -63,34 +63,34 @@ export const getMetaId = (meta: string = '') => {
 export const isMeta = (meta: string = '') => meta && meta.includes('mdx:preview');
 
 /** 获取需要渲染的代码块 **/
-export const getCodeBlock = (child: MarkdownParseData['children'], opts: Options = {}): CodeBlockData['data'] => {
+export function getCodeBlock(
+  child: MarkdownParseData['children'],
+  opts: Options = {},
+  resourcePath?: string,
+): CodeBlockData['data'] {
   const { lang = ['jsx', 'tsx'] } = opts;
   // 获取渲染部分
   const codeBlock: Record<string | number, CodeBlockItem> = {};
-  try {
-    child.forEach((item) => {
-      if (item && item.type === 'code' && lang.includes(item.lang)) {
-        const line = item.position.start.line;
-        const metaId = getMetaId(item.meta);
-        if (isMeta(item.meta)) {
-          let name = metaId || line;
-          const funName = `${FUNNAME_PREFIX}${name}`;
-          const returnCode = getTransformValue(item.value, `${funName}.${lang}`, opts);
-          codeBlock[name] = {
-            name,
-            meta: getURLParameters(item.meta),
-            code: returnCode,
-            language: item.lang,
-            value: item.value,
-          };
-        }
+  child.forEach((item) => {
+    if (item && item.type === 'code' && lang.includes(item.lang)) {
+      const line = item.position.start.line;
+      const metaId = getMetaId(item.meta);
+      if (isMeta(item.meta)) {
+        let name = metaId || line;
+        const funName = `${resourcePath}.${FUNNAME_PREFIX}${name}`;
+        const returnCode = getTransformValue(item.value, `${funName}.${item.lang}`, opts);
+        codeBlock[name] = {
+          name,
+          meta: getURLParameters(item.meta),
+          code: returnCode,
+          language: item.lang,
+          value: item.value,
+        };
       }
-    });
-  } catch (err) {
-    console.warn(err);
-  }
+    }
+  });
   return codeBlock;
-};
+}
 
 /**
  * `mdCodeModulesLoader` method for adding `markdown-react-code-preview-loader` to webpack config.
