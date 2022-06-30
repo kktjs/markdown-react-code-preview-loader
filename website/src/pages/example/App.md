@@ -15,10 +15,7 @@ import Alert from "@uiw/react-alert";
 ## Basic Usage
 
 ```jsx mdx:preview
-import React,{ 
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Alert, ButtonGroup, Button } from "uiw";
 
