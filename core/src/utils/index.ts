@@ -14,11 +14,15 @@ import { Options, FUNNAME_PREFIX, CodeBlockItem, CodeBlockData } from '../';
  * @param url `name=Adam&surname=Smith`
  * @returns
  */
-export const getURLParameters = (url: string): Record<string, string> =>
-  (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
-    (a: Record<string, string>, v: string) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
-    {},
-  );
+export const getURLParameters = (url: string): Record<string, string> => {
+  const regex = /([^?=&]+)=([^&]*)/g;
+  const params: Record<string, string> = {};
+  let match;
+  while ((match = regex.exec(url))) {
+    params[match[1]] = match[2];
+  }
+  return params;
+};
 
 export interface MarkdownDataChild extends Node {
   lang: string;

@@ -186,6 +186,7 @@ getURLParameters('name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smi
 getURLParameters('mdx:preview:demo12')       // => { }
 getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
 getURLParameters('mdx:preview:demo12&code=true&boreder=0')      // => { code: 'true', boreder: "0" }
+getURLParameters('mdx:preview:demo12?code=true&boreder=0')      // => { code: 'true', boreder: "0" }
 ```
 
 ```markdown

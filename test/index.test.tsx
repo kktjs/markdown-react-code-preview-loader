@@ -3,6 +3,9 @@ import { getURLParameters, getMetaId, isMeta } from '../core/src/utils'
 test('getURLParameters test case', () => {
   expect(getURLParameters('name=Adam&surname=Smith')).toEqual({ name: 'Adam', surname: "Smith" })
   expect(getURLParameters('mdx:preview:demo12')).toEqual({ })
+  expect(getURLParameters('mdx:preview:demo12:')).toEqual({ })
+  expect(getURLParameters('mdx:preview:demo12:ab=1')).toEqual({ "mdx:preview:demo12:ab": "1" }); // 🔴
+  expect(getURLParameters('mdx:preview:demo12?name=Adam&surname=Smith')).toEqual({ name: 'Adam', surname: "Smith" })
   expect(getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')).toEqual({ name: 'Adam', surname: "Smith" })
   expect(getURLParameters('mdx:preview:demo12&code=true&boreder=0')).toEqual({ code: 'true', boreder: "0" })
 });
