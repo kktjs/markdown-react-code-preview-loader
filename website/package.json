@@ -27,12 +27,14 @@
     "uiw": "^4.21.7"
   },
   "devDependencies": {
+    "buffer": "6.0.3",
+    "@kkt/resolve-fallback": "~7.4.16",
     "@kkt/less-modules": "~7.1.1",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
-    "kkt": "~7.1.5",
+    "kkt": "~7.4.16",
     "markdown-react-code-preview-loader": "2.1.5"
   },
   "eslintConfig": {
