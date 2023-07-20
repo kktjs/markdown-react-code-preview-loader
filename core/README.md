@@ -99,6 +99,8 @@ export type Options = {
    * Add babel plugins.
    */
   babelPlugins?: PluginItem[];
+   /**Do you want to parse the title*/
+  isHeading?: boolean
 }
 ```
 
@@ -112,6 +114,7 @@ import mdObj from 'markdown-react-code-preview-loader/README.md';
 mdObj.source     // => `README.md` raw string text
 mdObj.components // => The component index object, the React component converted from the markdown indexed example. (need to configure meta)
 mdObj.data       // => The component source code index object, the sample source code indexed from markdown. (need to configure meta)
+mdObj.headings       // => This is the parsed header data
 ```
 
 ```js
@@ -133,7 +136,8 @@ mdObj.data       // => The component source code index object, the sample source
     }
   },
   components: { 77: ƒ, demo12: ƒ },
-  source: "# Alert 确认对话框...."
+  source: "# Alert 确认对话框....",
+  headings:[{depth:1,value:"标题", ...},...]
 }
 ```
 
@@ -155,6 +159,7 @@ export type CodeBlockData = {
   source: string;
   components: Record<CodeBlockItem['name'], React.FC>;
   data: Record<CodeBlockItem['name'], CodeBlockItem>;
+  headings?: HeadingItem[]
 };
 ```
 
