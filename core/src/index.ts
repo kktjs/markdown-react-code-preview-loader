@@ -1,7 +1,7 @@
 import React from 'react';
 import { PluginItem } from '@babel/core';
 import { Options as RIOptions } from 'babel-plugin-transform-remove-imports';
-import { getProcessor, getCodeBlock } from './utils';
+import { getProcessor, getCodeBlock, getHeadings } from './utils';
 import { LoaderDefinitionFunction } from 'webpack';
 export * from './utils';
 
@@ -47,8 +47,9 @@ const codePreviewLoader: LoaderDefinitionFunction = function (source) {
 
   let components = '';
   let codeBlock = {} as CodeBlockData['data'];
+  const child = getProcessor(source);
   try {
-    codeBlock = getCodeBlock(getProcessor(source), options, this.resourcePath);
+    codeBlock = getCodeBlock(child, options, this.resourcePath);
     Object.keys(codeBlock).forEach((key) => {
       components += `${key}: (function() { ${codeBlock[key].code} })(),`;
     });
@@ -56,10 +57,13 @@ const codePreviewLoader: LoaderDefinitionFunction = function (source) {
     this.emitError(error);
   }
 
+  const headings = getHeadings(child);
+
   return `\nexport default {
     components: { ${components} },
     data: ${JSON.stringify(codeBlock, null, 2)},
-    source: ${JSON.stringify(source)}
+    source: ${JSON.stringify(source)},
+    headings:${JSON.stringify(headings)}
   }`;
 };
 
