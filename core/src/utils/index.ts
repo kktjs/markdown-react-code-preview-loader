@@ -131,6 +131,7 @@ export const mdCodeModulesLoader = (
 export interface HeadingListType {
   depth: number;
   value: string;
+  key: number;
 }
 
 export interface HeadingItem extends HeadingListType {
@@ -185,17 +186,22 @@ export const getSameLevelHeading = (list: HeadingListType[]) => {
 export const getHeadings = (child: MarkdownParseData['children']) => {
   const headingList: HeadingListType[] = [];
 
-  child.forEach((item) => {
+  child.forEach((item, index) => {
     if (item && item.type === 'heading') {
       const { depth, children } = item;
-      if (Array.isArray(children) && children.length && depth) {
-        const [firstItem] = children || [];
-        if (firstItem && firstItem?.value) {
-          headingList.push({ depth, value: firstItem?.value });
-        }
+      if (Array.isArray(children) && children.length) {
+        const value = children.map((item) => item.value).join('');
+        headingList.push({
+          key: index,
+          value,
+          depth,
+        });
       }
     }
   });
 
-  return getSameLevelHeading(headingList);
+  return {
+    headings: getSameLevelHeading(headingList),
+    headingsList: headingList,
+  };
 };

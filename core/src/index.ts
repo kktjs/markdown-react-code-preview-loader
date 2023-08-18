@@ -1,7 +1,7 @@
 import React from 'react';
 import { PluginItem } from '@babel/core';
 import { Options as RIOptions } from 'babel-plugin-transform-remove-imports';
-import { getProcessor, getCodeBlock, getHeadings, HeadingItem } from './utils';
+import { getProcessor, getCodeBlock, getHeadings, HeadingItem, HeadingListType } from './utils';
 import { LoaderDefinitionFunction } from 'webpack';
 export * from './utils';
 
@@ -23,6 +23,7 @@ export type CodeBlockData = {
   components: Record<CodeBlockItem['name'], React.FC>;
   data: Record<CodeBlockItem['name'], CodeBlockItem>;
   headings?: HeadingItem[];
+  headingsList: HeadingListType[];
 };
 
 export const FUNNAME_PREFIX = '__BaseCode__';
@@ -47,12 +48,13 @@ export type Options = {
 
 const codePreviewLoader: LoaderDefinitionFunction = function (source) {
   const options: Options = this.getOptions();
+  const { isHeading, ...rest } = options;
 
   let components = '';
   let codeBlock = {} as CodeBlockData['data'];
   const child = getProcessor(source);
   try {
-    codeBlock = getCodeBlock(child, options, this.resourcePath);
+    codeBlock = getCodeBlock(child, rest, this.resourcePath);
     Object.keys(codeBlock).forEach((key) => {
       components += `${key}: (function() { ${codeBlock[key].code} })(),`;
     });
@@ -60,13 +62,14 @@ const codePreviewLoader: LoaderDefinitionFunction = function (source) {
     this.emitError(error);
   }
 
-  const headings = options.isHeading ? getHeadings(child) : [];
+  const { headingsList, headings } = isHeading ? getHeadings(child) : { headingsList: [], headings: [] };
 
   return `\nexport default {
     components: { ${components} },
     data: ${JSON.stringify(codeBlock, null, 2)},
     source: ${JSON.stringify(source)},
-    headings:${JSON.stringify(headings)}
+    headings:${JSON.stringify(headings)},
+    headingsList:${JSON.stringify(headingsList)},
   }`;
 };
 
