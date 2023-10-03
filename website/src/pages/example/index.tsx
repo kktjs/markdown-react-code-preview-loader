@@ -11,6 +11,7 @@ export function ExamplePage() {
     <Loader style={{ width: '100%' }} loading={loading} tip="loading...">
       <MarkdownPreview
         disableCopy={true}
+        style={{ background: 'transparent' }}
         source={mdData.source}
         rehypeRewrite={(node: Root | RootContent, index: number, parent: Root | Element) => {
           if (node.type === 'element' && parent && parent.type === 'root' && /h(1|2|3|4|5|6)/.test(node.tagName)) {
