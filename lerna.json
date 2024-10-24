@@ -1,4 +1,4 @@
 {
   "version": "2.1.8",
-  "packages": ["website", "core"]
+  "packages": ["website", "core", "pkg-example"]
 }

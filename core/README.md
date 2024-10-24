@@ -27,11 +27,15 @@ import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
 import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
-export default (conf: WebpackConfiguration, env: 'development' | 'production', options: LoaderConfOptions) => {
-  // ....
-  conf = mdCodeModulesLoader(conf);
-  // ....
-  return conf;
+export default (
+    conf: WebpackConfiguration,
+    env: 'development' | 'production',
+    options: LoaderConfOptions
+) => {
+    // ....
+    conf = mdCodeModulesLoader(conf);
+    // ....
+    return conf;
 };
 ```
 
@@ -45,7 +49,11 @@ import { Options } from 'markdown-react-code-preview-loader';
  * @param {Options} option Loader Options
  * @returns {webpack.Configuration}
  * **/
-export declare const mdCodeModulesLoader: (config: webpack.Configuration, lang?: string[], option?: Options) => webpack.Configuration;
+export declare const mdCodeModulesLoader: (
+  config: webpack.Configuration, 
+  lang?: string[], 
+  option?: Options
+) => webpack.Configuration;
 ```
 
 **② The second method is to manually add the configuration**
@@ -111,10 +119,16 @@ After adding `loader`, use the method to load `markdown` text in the project pro
 ```jsx
 import mdObj from 'markdown-react-code-preview-loader/README.md';
 
-mdObj.source     // => `README.md` raw string text
-mdObj.components // => The component index object, the React component converted from the markdown indexed example. (need to configure meta)
-mdObj.data       // => The component source code index object, the sample source code indexed from markdown. (need to configure meta)
-mdObj.headings       // => This is the parsed header data
+// `README.md` raw string text
+mdObj.source
+// The component index object, the React component converted from the markdown indexed example.
+// (need to configure meta)
+mdObj.components
+// The component source code index object, the sample source code indexed from markdown.
+// (need to configure meta)
+mdObj.data
+// This is the parsed header data
+mdObj.headings
 ```
 
 ```js

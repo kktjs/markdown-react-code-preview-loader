@@ -23,6 +23,7 @@
   },
   "workspaces": [
     "core",
+    "pkg-example",
     "website"
   ],
   "jest": {
@@ -35,11 +36,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "husky": "~7.0.4",
-    "lerna": "~4.0.0",
-    "lint-staged": "~12.3.4",
-    "prettier": "~2.5.1",
-    "pretty-quick": "~3.1.3",
-    "tsbb": "~3.7.0"
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "husky": "~9.1.6",
+    "lerna": "~8.1.8",
+    "lint-staged": "~15.2.10",
+    "prettier": "~3.3.3",
+    "pretty-quick": "~4.0.0",
+    "tsbb": "^4.4.0"
   }
 }

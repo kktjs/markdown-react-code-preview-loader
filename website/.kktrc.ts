@@ -21,6 +21,7 @@ export default (conf: WebpackConfiguration, env: 'development' | 'production', o
   );
   conf = mdCodeModulesLoader(conf);
   conf.module!.exprContextCritical = false;
+
   if (process.env.NODE_ENV === 'production') {
     conf.output = { ...conf.output, publicPath: './' };
   }

@@ -27,7 +27,11 @@ import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
 import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
-export default (conf: WebpackConfiguration, env: 'development' | 'production', options: LoaderConfOptions) => {
+export default (
+  conf: WebpackConfiguration, 
+  env: 'development' | 'production', 
+  options: LoaderConfOptions
+) => {
   // ....
   conf = mdCodeModulesLoader(conf);
   // ....
@@ -45,7 +49,11 @@ import { Options } from 'markdown-react-code-preview-loader';
  * @param {Options} option Loader Options
  * @returns {webpack.Configuration}
  * **/
-export declare const mdCodeModulesLoader: (config: webpack.Configuration, lang?: string[], option?: Options) => webpack.Configuration;
+export declare const mdCodeModulesLoader: (
+  config: webpack.Configuration, 
+  lang?: string[], 
+  option?: Options
+) => webpack.Configuration;
 ```
 
 **第 ② 种方法，手动添加配置**

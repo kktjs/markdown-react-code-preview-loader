@@ -1,8 +1,8 @@
 import { transform } from '@babel/standalone';
-import { PluginItem } from '@babel/core';
+import { type PluginItem } from '@babel/core';
 import removeImports from 'babel-plugin-transform-remove-imports';
 import replaceExportDefault from 'babel-plugin-transform-replace-export-default';
-import { Options } from '../';
+import { type Options } from '../';
 
 export const getTransformValue = (str: string, filename: string, opts: Options) => {
   const plugins: PluginItem[] = [...(opts.babelPlugins || [])];

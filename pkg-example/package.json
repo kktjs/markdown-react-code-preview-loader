@@ -1,0 +1,22 @@
+{
+  "name": "pkg-example",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    },
+    "./README.md": "./README.md"
+  },
+  "scripts": {
+    "watch": "tsbb watch src/*.tsx --use-babel",
+    "build": "tsbb build src/*.tsx --use-babel"
+  },
+  "keywords": [],
+  "author": "jaywcjlove",
+  "description": ""
+}
