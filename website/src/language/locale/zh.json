@@ -3,5 +3,6 @@
   "zh": "中文",
   "en": "英文",
   "docuemnt": "文档",
-  "example": "案例"
+  "example": "案例",
+  "pkg-example": "PKG 示例"
 }

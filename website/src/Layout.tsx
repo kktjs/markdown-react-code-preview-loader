@@ -19,6 +19,9 @@ export function Layout() {
           <NavLink to="/example" replace>
             {i18next.t('example')}
           </NavLink>
+          <NavLink to="/pkg-example" replace>
+            {i18next.t('pkg-example')}
+          </NavLink>
           <dark-mode permanent></dark-mode>
           <Language />
         </nav>

@@ -31,9 +31,8 @@
     "@kkt/less-modules": "~7.5.5",
     "@kkt/raw-modules": "~7.5.5",
     "@kkt/scope-plugin-options": "~7.5.5",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
     "kkt": "~7.5.5",
+    "pkg-example": "2.1.9",
     "markdown-react-code-preview-loader": "2.1.9"
   },
   "eslintConfig": {

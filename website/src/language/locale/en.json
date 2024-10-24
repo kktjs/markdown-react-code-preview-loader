@@ -3,5 +3,6 @@
   "zh": "chinese",
   "en": "english",
   "docuemnt": "Docuemnt",
-  "example": "Example"
+  "example": "Example",
+  "pkg-example": "PKG Example"
 }
