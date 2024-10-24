@@ -1,8 +1,9 @@
 import React from 'react';
-import { PluginItem } from '@babel/core';
-import { Options as RIOptions } from 'babel-plugin-transform-remove-imports';
-import { getProcessor, getCodeBlock, getHeadings, HeadingItem, HeadingListType } from './utils';
-import { LoaderDefinitionFunction } from 'webpack';
+import { type LoaderDefinitionFunction } from 'webpack';
+import { type PluginItem } from '@babel/core';
+import { type Options as RIOptions } from 'babel-plugin-transform-remove-imports';
+import { getProcessor, getCodeBlock, getHeadings, type HeadingItem, type HeadingListType } from './utils';
+
 export * from './utils';
 
 export type CodeBlockItem = {

@@ -1,8 +1,8 @@
-import { Parent, Node } from 'unist';
+import { type Node } from 'unist';
 import webpack from 'webpack';
 import remark from 'remark';
 import { getTransformValue } from './transform';
-import { Options, FUNNAME_PREFIX, CodeBlockItem, CodeBlockData } from '../';
+import { type Options, FUNNAME_PREFIX, CodeBlockItem, CodeBlockData } from '../';
 
 /**
  * Creates an object containing the parameters of the current URL.
@@ -32,11 +32,12 @@ export interface MarkdownDataChild extends Node {
   children?: Array<MarkdownDataChild>;
 }
 
-export interface MarkdownParseData extends Parent<MarkdownDataChild> {}
+export interface MarkdownParseData extends MarkdownDataChild {}
 
 /** 转换 代码*/
 export const getProcessor = (source: string) => {
   try {
+    // @ts-ignore
     const child = remark.parse(source) as MarkdownParseData;
     return child.children;
   } catch (err) {
