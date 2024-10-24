@@ -43,7 +43,9 @@ export default (
 import webpack from 'webpack';
 import { Options } from 'markdown-react-code-preview-loader';
 /**
- * `mdCodeModulesLoader` method for adding `markdown-react-code-preview-loader` to webpack config.
+ * `mdCodeModulesLoader` method for adding 
+ * `markdown-react-code-preview-loader` to webpack config.
+ * 
  * @param {webpack.Configuration} config webpack config
  * @param {string[]} lang Parsing language
  * @param {Options} option Loader Options
@@ -66,7 +68,11 @@ import webpack, { Configuration } from 'webpack';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions } from 'kkt';
 
-export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+export default (
+  conf: Configuration,
+  env: 'development' | 'production',
+  options: LoaderConfOptions
+) => {
   // ....
   config.module.rules.forEach((ruleItem) => {
     if (typeof ruleItem === 'object') {
@@ -121,7 +127,8 @@ import mdObj from 'markdown-react-code-preview-loader/README.md';
 
 // `README.md` raw string text
 mdObj.source
-// The component index object, the React component converted from the markdown indexed example.
+// The component index object,
+// the React component converted from the markdown indexed example.
 // (need to configure meta)
 mdObj.components
 // The component source code index object, the sample source code indexed from markdown.
@@ -203,9 +210,13 @@ import { getURLParameters } from 'markdown-react-code-preview-loader';
 
 getURLParameters('name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
 getURLParameters('mdx:preview:demo12')       // => { }
-getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')  // => { name: 'Adam', surname: "Smith" }
-getURLParameters('mdx:preview:demo12&code=true&boreder=0')      // => { code: 'true', boreder: "0" }
-getURLParameters('mdx:preview:demo12?code=true&boreder=0')      // => { code: 'true', boreder: "0" }
+
+getURLParameters('mdx:preview:demo12&name=Adam&surname=Smith')
+// => { name: 'Adam', surname: "Smith" }
+getURLParameters('mdx:preview:demo12&code=true&boreder=0')
+// => { code: 'true', boreder: "0" }
+getURLParameters('mdx:preview:demo12?code=true&boreder=0')
+// => { code: 'true', boreder: "0" }
 ```
 
 ```markdown
@@ -238,7 +249,10 @@ export default Demo
 ## getCodeBlock 
 
 ```ts
-const getCodeBlock: (child: MarkdownParseData['children'], opts?: Options) => CodeBlockData['data'];
+const getCodeBlock: (
+  child: MarkdownParseData['children'],
+  opts?: Options
+) => CodeBlockData['data'];
 ```
 
 ## Configure meta ID

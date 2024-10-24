@@ -66,7 +66,11 @@ import webpack, { Configuration } from 'webpack';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import { LoaderConfOptions } from 'kkt';
 
-export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+export default (
+  conf: Configuration,
+  env: 'development' | 'production',
+  options: LoaderConfOptions
+) => {
   // ....
   config.module.rules.forEach((ruleItem) => {
     if (typeof ruleItem === 'object') {
